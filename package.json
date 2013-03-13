@@ -1,0 +1,12 @@
+{
+  "name": "Regexify",
+  "main": "index.html",
+  "description": "Regexify (live JavaScript RegEx tester)",
+  "version": "0.0.1",
+  "window": {
+    "toolbar": false,
+    "min_width": 400,
+    "min_height": 200
+  }
+}
+

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Regexify (live JavaScript RegEx tester)</title>
+  <link rel="stylesheet" href="vendor/auto-growing-textarea/css/auto-grow.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body hidden>
+  <div id="pattern" class="tbl">
+    <span class="tbl-row">
+      <span class="tbl-cell">/</span>
+      <span class="tbl-cell">
+        <textarea spellcheck="false" autofocus>([a-z]{10}) (\S*) (\w*)</textarea>
+      </span>
+      <span class="tbl-cell">/<input type="text" name="flags" size="3" maxlength="3" value="g"></span>
+    </span>
+  </div>
+
+  <hr>
+
+  <textarea spellcheck="false" id="haystack">If you really want to hear about it, the first thing you'll probably want to know is where I was born, an what my lousy childhood was like, and how my parents were occupied and all before they had me, and all that David Copperfield kind of crap, but I don't feel like going into it, if you want to know the truth. In the first place, that stuff bores me, and in the second place, my parents would have about two hemorrhages apiece if I told anything pretty personal about them. They're quite touchy about anything like that, especially my father. They're nice and all--I'm not saying that--but they're also touchy as hell. Besides, I'm not going to tell you my whole goddam autobiography or anything. I'll just tell you about this madman stuff that happened to me around last Christmas just before I got pretty run-down and had to come out here and take it easy. I mean that's all I told D.B. about, and he's my brother and all.</textarea>
+
+  <hr>
+
+  <div id="matches"></div>
+
+  <footer>
+    <a href="http://github.com/loonkwil/regexify">Fork me on GitHub</a>,
+    this site is using <a href="http://stevenlevithan.com/regex/colorizer" target="_blank">Regex Colorizer</a>
+    and <a href="http://jquery.com" target="_blank">jQuery</a>
+  </footer>
+
+  <script src="vendor/jquery/dist/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="http://code.jquery.com/jquery-latest.min.js">\x3C/script>')</script>
+  <script src="vendor/auto-growing-textarea/js/jquery.auto-grow.js"></script>
+  <script src="vendor/regex-colorizer/regex-colorizer.js"></script>
+  <script src="js/pattern.js"></script>
+  <script src="js/haystack.js"></script>
+  <script src="js/matches.js"></script>
+  <script src="js/regexify.js"></script>
+</body>
+</html>

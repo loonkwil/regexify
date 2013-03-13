@@ -1,0 +1,9 @@
+[submodule "vendor/jquery"]
+	path = vendor/jquery
+	url = git@github.com:jquery/jquery.git
+[submodule "vendor/auto-growing-textarea"]
+	path = vendor/auto-growing-textarea
+	url = git@github.com:loonkwil/auto-growing-textarea.git
+[submodule "vendor/regex-colorizer"]
+	path = vendor/regex-colorizer
+	url = git@github.com:slevithan/regex-colorizer.git
