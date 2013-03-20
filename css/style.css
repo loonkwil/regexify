@@ -42,6 +42,21 @@ b.err {
   text-align: center;
 }
 
+input,
+textarea.auto-growing-editor {
+  color: #666;
+}
+
+input:focus,
+textarea.auto-growing-editor:focus {
+  color: black;
+}
+
+input:focus,
+textarea.auto-growing-editor:focus+pre.auto-growing-editor {
+  background: rgba(250, 250, 250, 0.5);
+}
+
 /* tables */
 .tbl {
   display: table;
@@ -61,6 +76,12 @@ table {
 }
 thead {
   font-size: 90%;
+}
+tbody tr:nth-child(odd) {
+  opacity: 0.8;
+}
+tbody tr:hover {
+  font-weight: bold;
 }
 td:first-child {
   width: 25px;
