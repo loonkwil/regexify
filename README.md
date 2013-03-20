@@ -1,8 +1,11 @@
 Live JavaScript regex tester
 
+This site is using [RegexColorizer](http://stevenlevithan.com/regex/colorizer)
+and [jQuery](http://jquery.com)
+
 # Install
 
-# clone submodules
+## clone submodules
  1. `git submodule update --init`
 
 ## Build jQuery (not necessary)
