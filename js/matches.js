@@ -46,7 +46,7 @@
     if( !regex.global ) {
       match = regex.exec(text);
 
-      return match || [];
+      return [ match ] || [];
     }
 
     while ( null !== (match = regex.exec(text)) ) {
