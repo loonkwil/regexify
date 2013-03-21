@@ -1,5 +1,10 @@
 body {
-  font: 16px "courier new", monospace;
+  font-size: 16px;
+  min-height: 200px;
+}
+
+body, pre, textarea, input {
+  font-family: "courier new", monospace;
 }
 
 input, textarea {
@@ -32,7 +37,8 @@ b.err {
 }
 
 /* editable content */
-.auto-growing-editor, .auto-growing-editor-container {
+.auto-growing-editor,
+.auto-growing-editor-container {
   width: 100%;
 }
 .auto-growing-editor {
@@ -88,6 +94,23 @@ td:first-child {
 }
 td {
   padding: 2px 5px;
+}
+
+/* help */
+#help {
+  margin: 10px 0;
+  background: #3F3F3F;
+  color: #DBDDCB;
+}
+
+#help pre {
+  padding: 10px;
+  margin: 0;
+  white-space: -moz-pre-wrap; /* Firefox */
+  white-space: -pre-wrap; /* ancient Opera */
+  white-space: -o-pre-wrap; /* newer Opera */
+  white-space: pre-wrap; /* Chrome; W3C standard */
+  word-wrap: break-word; /* IE */
 }
 
 /* pattern */

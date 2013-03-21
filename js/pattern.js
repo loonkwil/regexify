@@ -43,7 +43,7 @@
     if( regexString.length === 0 ) { return p.REGEX_ERROR; }
 
     try {
-      return new RegExp(regexString, flagsString);
+      return new RegExp(regexString.replace(/\n/g, ''), flagsString);
     } catch( e ) {
       return p.REGEX_ERROR;
     }
