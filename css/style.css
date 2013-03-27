@@ -43,7 +43,6 @@ b.err {
 }
 .auto-growing-editor {
   height: 18px;
-  top: 2px;
   border: none;
   text-align: center;
 }

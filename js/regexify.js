@@ -116,22 +116,26 @@
     $('body').removeAttr('hidden');
 
     // install auto growing textareas
-    $pattern.find('textarea').autoGrow(function(str) {
-      updateRegex();
+    $pattern.find('textarea').autoGrow({
+      highlight: function(str) {
+        updateRegex();
 
-      syncPattern();
+        syncPattern();
 
-      $haystack.trigger('input');
+        $haystack.trigger('input');
 
-      return regexColorizer.colorizeText(str);
+        return regexColorizer.colorizeText(str);
+      }
     });
 
-    $haystack.autoGrow(function(str) {
-      updateMatches();
+    $haystack.autoGrow({
+      highlight: function(str) {
+        updateMatches();
 
-      syncHaystack();
+        syncHaystack();
 
-      return regexifyHaystack.highlightMatches(str, lastMatches);
+        return regexifyHaystack.highlightMatches(str, lastMatches);
+      }
     });
 
     // events
