@@ -73,7 +73,6 @@
 
     var shortText = text.
       substr(0, maxLength).
-      trimRight().
       replace(/\n/g, '\\n').
       replace(/'/g, '\\\'');
 
