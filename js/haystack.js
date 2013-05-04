@@ -4,15 +4,7 @@
   var regexify = window.regexify = window.regexify || {};
   var h = regexify.haystack = {};
 
-  /**
-   * @param {string} str
-   * @return {string}
-   */
-  var escape = function(str) {
-    return str.
-      replace(/>/g, '&gt;').
-      replace(/</g, '&lt;');
-  };
+  var escape = regexify.escape;
 
 
   /**

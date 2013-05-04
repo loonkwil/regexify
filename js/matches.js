@@ -4,6 +4,8 @@
   var regexify = window.regexify = window.regexify || {};
   var m = regexify.matches = {};
 
+  var escape = regexify.escape;
+
   /**
    * @param {Array}
    * @return {integer}
@@ -82,7 +84,7 @@
 
       var l2 = matches[i].length;
       for( j = 0; j < l2; ++j ) {
-        var val = matches[i][j] || '';
+        var val = escape(matches[i][j]) || '';
 
         out.push('<td class="', getGroupClass(j), '">', val, '</td>');
       }

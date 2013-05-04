@@ -123,6 +123,8 @@
 
         $haystack.trigger('input');
 
+        // the regexColorizer plugin will escape the "<", ">" and the "&"
+        // character
         return regexColorizer.colorizeText(str);
       }
     });
