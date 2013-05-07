@@ -8,41 +8,6 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body hidden>
-  <div id="help">
-<pre>
-var pattern = /<span id="pattern-copy"></span>/<span id="flags-copy"></span>;
-var input = '<span id="haystack-copy"></span>';
-</pre>
-
-<pre>
-if( pattern.test(input) ) {
-  <em>// match</em>
-} else {
-  <em>// no match</em>
-}
-</pre>
-
-<pre id="global-on">
-var matches = input.match(pattern);
-if( matches !== null ) {
-  matches.forEach(function(match) {
-    <em>// do something with the match</em>
-  });
-} else {
-  <em>// no match</em>
-}
-</pre>
-
-<pre id="global-off">
-var match = input.match(pattern);
-if( match !== null ) {
-  <em>// do something with the match</em>
-} else {
-  <em>// no match</em>
-}
-</pre>
-  </div>
-
   <div id="pattern" class="tbl">
     <span class="tbl-row">
       <span class="tbl-cell">/</span>

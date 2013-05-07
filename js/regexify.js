@@ -13,7 +13,7 @@
   var regexifyMatches = regexify.matches;
 
   // cache
-  var $help, $flagsCopy, $patternCopy, $haystackCopy, $pattern, $flags, $haystack, $matches;
+  var $pattern, $flags, $haystack, $matches;
 
   var lastRegex;
   var lastMatches;
@@ -41,48 +41,6 @@
     );
   };
 
-  var hideHelp = function() {
-    var helpHeight = $help.outerHeight(true);
-
-    if( $(document).height() - $(window).height() > helpHeight ) {
-      window.setTimeout(function() {
-        $('html,body').animate({scrollTop: helpHeight}, 300);
-      }, 300);
-    }
-  };
-
-  var syncFlags = function() {
-    var flags = $flags.val().toLowerCase();
-    var global = flags.search('g') !== -1;
-
-    $flagsCopy.text(flags);
-
-    $help.find('#global-on').attr('hidden', !global);
-    $help.find('#global-off').attr('hidden', global);
-  };
-
-  var syncPattern = function() {
-    $patternCopy.text(
-      $pattern.find('textarea').val().replace(/\n/g, '')
-    );
-  };
-
-  var syncHaystack = function() {
-    var maxLength = 20;
-    var text = $haystack.val();
-
-    var shortText = text.
-      substr(0, maxLength).
-      replace(/\n/g, '\\n').
-      replace(/'/g, '\\\'');
-
-    if( text.length > maxLength ) {
-      shortText += '...';
-    }
-
-    $haystackCopy.text(shortText);
-  };
-
   var saveState = function() {
     localStorage.regex = $pattern.find('textarea').val();
     localStorage.flags = $flags.val();
@@ -100,17 +58,12 @@
 
   $(function() {
     // warm up the cache
-    $help = $('#help');
-    $patternCopy = $('#pattern-copy');
-    $flagsCopy = $('#flags-copy');
-    $haystackCopy = $('#haystack-copy');
     $pattern = $('#pattern');
     $flags = $('input[name="flags"]');
     $haystack = $('#haystack');
     $matches = $('#matches');
 
     loadSavedState();
-    syncFlags();
 
     $('body').removeAttr('hidden');
 
@@ -118,8 +71,6 @@
     $pattern.find('textarea').autoGrow({
       highlight: function(str) {
         updateRegex();
-
-        syncPattern();
 
         $haystack.trigger('input');
 
@@ -133,21 +84,13 @@
       highlight: function(str) {
         updateMatches();
 
-        syncHaystack();
-
         return regexifyHaystack.highlightMatches(str, lastMatches);
       }
     });
 
     // events
-    $pattern.find('textarea').on('click', function focusEvent() {
-      hideHelp();
-    });
-
     $flags.on('input', function flagsChangeEvent() {
       updateRegex();
-
-      syncFlags();
 
       $haystack.trigger('input');
     });
@@ -155,8 +98,5 @@
     $(window).on('beforeunload', function beforeCloseEvent() {
       saveState();
     });
-
-    // hiding the help message
-    hideHelp();
   });
 })(window);

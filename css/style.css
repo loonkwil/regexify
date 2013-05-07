@@ -95,24 +95,6 @@ td {
   padding: 2px 5px;
 }
 
-/* help */
-#help {
-  margin: 10px 0;
-  background: #3F3F3F;
-  color: #DBDDCB;
-  font-size: 90%;
-}
-
-#help pre {
-  padding: 10px;
-  margin: 0;
-  white-space: -moz-pre-wrap; /* Firefox */
-  white-space: -pre-wrap; /* ancient Opera */
-  white-space: -o-pre-wrap; /* newer Opera */
-  white-space: pre-wrap; /* Chrome; W3C standard */
-  word-wrap: break-word; /* IE */
-}
-
 /* pattern */
 #pattern {
   width: 100%;
