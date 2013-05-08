@@ -1,15 +1,19 @@
+# Regexify
+
 Live JavaScript regex tester
 
-This site is using [RegexColorizer](http://stevenlevithan.com/regex/colorizer)
-and [jQuery](http://jquery.com)
+## Install
 
-# Install
+Use the [gh-pages](https://github.com/loonkwil/regexify/tree/gh-pages) branch
+if you don't want to install anything.
 
-## clone submodules
- 1. `git submodule update --init`
+If you want to use this page like a native application, check out the
+[node-webkit](https://github.com/loonkwil/regexify/tree/node-webkit) branch.
 
-## Build jQuery (not necessary)
- 1. `npm install -g grunt-cli`
- 2. `cd vendor/jquery && npm install`
- 3. `git checkout $(git describe --abbrev=0 --tags)`
- 4. `grunt`
+Requirements: [NodeJs](http://nodejs.org), [Bower](http://bower.io)
+
+ 1. `bower install`
+
+## Updating vendors
+
+ 1. `bower update`
