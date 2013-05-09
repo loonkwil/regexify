@@ -21,24 +21,14 @@
     return max;
   };
 
-  /**
-   * @param {integer} n
-   * @return {string}
-   */
-  var getGroupClass = function(n) {
-    if( n === 0 ) { return ''; }
-
-    return 'g' + (((n-1) % 5) + 1);
-  };
-
 
   /**
-   * @param {RegExp} regex
+   * @param {?RegExp} regex
    * @param {string} text
    * @return {Array}
    */
   m.getMatches = function(regex, text) {
-    if( text.length === 0 ) {
+    if( text.length === 0 || regex === null ) {
       return [];
     }
 
@@ -48,7 +38,7 @@
     if( !regex.global ) {
       match = regex.exec(text);
 
-      return [ match ] || [];
+      return (match === null) ? [] : [ match ];
     }
 
     while ( null !== (match = regex.exec(text)) ) {
@@ -68,25 +58,29 @@
   m.getMatchesTable = function(matches) {
     if( matches.length === 0 ) { return ''; }
 
-    var out = ['<table><thead><tr><td></td><td>match</td>'];
+    var i, j;
+    var out = ['<table class="table table-striped table-hover table-condensed">'];
+
+    // Head
+    out.push('<thead><tr><th>#</th><th>match</th>');
 
     var col = getMaxLength(matches);
 
-    var i, j;
     for ( i = 1; i < col; ++i ) {
-      out.push('<td class="', getGroupClass(i), '">$', i, '</td>');
+      out.push('<th>$', i, '</th>');
     }
     out.push('</tr></thead>');
 
+    // Body
     var l = matches.length;
     for ( i = 0; i < l; ++i ) {
-      out.push('<tr><td>', i + 1, '. </td>');
+      out.push('<tr><td>', i + 1, '</td>');
 
       var l2 = matches[i].length;
       for( j = 0; j < l2; ++j ) {
-        var val = escape(matches[i][j]) || '';
+        var val = matches[i][j] || '';
 
-        out.push('<td class="', getGroupClass(j), '">', val, '</td>');
+        out.push('<td>', escape(val), '</td>');
       }
 
       out.push('</tr>');

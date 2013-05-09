@@ -2,7 +2,8 @@
   "name": "regexify",
   "version": "0.1.0",
   "dependencies": {
-    "jquery": ">=2",
+    "jquery": "~2.0.0",
+    "bootstrap": "~2.3.1",
     "regex-colorizer": "git://github.com/slevithan/regex-colorizer.git",
     "jquery.auto-grow": "git@github.com:loonkwil/jquery.auto-grow.git"
   }
