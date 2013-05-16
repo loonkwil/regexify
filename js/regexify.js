@@ -14,7 +14,7 @@
 
 
   // cache
-  var $pattern, $flags, $haystack, $matches;
+  var $pattern, $flags, $copy, $haystack, $matches;
 
   var lastRegex,lastMatches;
 
@@ -22,13 +22,17 @@
   /**
    * @return {string}
    */
-  var getRegexString = function() { return $pattern.find('textarea').val(); };
+  var getRegexString = function() {
+    return $pattern.find('textarea').val().replace(/\n/g, '');
+  };
 
   /**
    * @param {string} str
    * @return {Object}
    */
-  var setRegexString = function(str) { return $pattern.find('textarea').val(str); };
+  var setRegexString = function(str) {
+    return $pattern.find('textarea').val(str);
+  };
 
   /**
    * @return {string}
@@ -94,6 +98,7 @@
     // warm up the cache
     $pattern = $('#pattern');
     $flags = $('#flags button');
+    $copy = $('#copy');
     $haystack = $('#haystack');
     $matches = $('#matches');
 
@@ -141,6 +146,18 @@
 
         return regexifyHaystack.highlightMatches(str, lastMatches);
       }
+    });
+
+    // ZeroClipboard install
+    ZeroClipboard.setDefaults({
+      moviePath: 'components/zeroclipboard/ZeroClipboard.swf',
+      activeClass: 'active',
+      hoverClass: 'hover'
+    });
+
+    var clip = new ZeroClipboard($copy);
+    clip.on('dataRequested', function(client, args) {
+      clip.setText('/' + getRegexString() + '/' + getFlagsString());
     });
 
     // events

@@ -14,7 +14,7 @@
     if( regexString.length === 0 ) { return null; }
 
     try {
-      return new RegExp(regexString.replace(/\n/g, ''), flagsString);
+      return new RegExp(regexString, flagsString);
     } catch( e ) {
       return null;
     }
