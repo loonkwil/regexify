@@ -160,6 +160,10 @@
       clip.setText('/' + getRegexString() + '/' + getFlagsString());
     });
 
+    $(window).on('resize', function fixFlashPosition() {
+      clip.reposition();
+    });
+
     // events
     $flags.on('click', function flagsChangeEvent() {
       $(this).button('toggle');
