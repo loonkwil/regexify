@@ -59,7 +59,7 @@
     if( matches.length === 0 ) { return ''; }
 
     var i, j;
-    var out = ['<table class="table table-striped table-hover table-condensed">'];
+    var out = [];
 
     // Head
     out.push('<thead><tr><th>#</th><th>match</th>');
@@ -85,8 +85,6 @@
 
       out.push('</tr>');
     }
-
-    out.push('</table>');
 
     return out.join('');
   };

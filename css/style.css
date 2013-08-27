@@ -1,5 +1,5 @@
 body {
-  margin: 10px 30px;
+  margin: 0 30px;
 }
 
 section {
@@ -7,7 +7,7 @@ section {
 }
 
 .btn {
-  line-height: 18px;
+  line-height: 14px;
 }
 
 #pattern {
@@ -35,8 +35,9 @@ section {
   border-radius: 4px 0 0 4px;
 }
 
-#flags {
+#pattern #flags {
   width: 100px;
+  float: left;
 }
 
 #flags .btn:first-child {
@@ -52,14 +53,9 @@ section {
 
 #copy.hover {
   color: #333333;
-  background-color: #e6e6e6;
-  *background-color: #d9d9d9;
+  background-color: #ebebeb;
+  border-color: #adadad;
   text-decoration: none;
-  background-position: 0 -15px;
-  -webkit-transition: background-position 0.1s linear;
-     -moz-transition: background-position 0.1s linear;
-       -o-transition: background-position 0.1s linear;
-          transition: background-position 0.1s linear;
 }
 
 #matches th:first-child {
