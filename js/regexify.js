@@ -44,6 +44,7 @@
    * @return {Object}
    */
   var setFlagsString = function(str) {
+    str = str || '';
     return $flags.each(function() {
       var $this = $(this);
       $this.toggleClass('active', str.indexOf($this.text()) !== -1);
