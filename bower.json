@@ -7,5 +7,8 @@
     "regex-colorizer": "git://github.com/slevithan/regex-colorizer.git",
     "jquery.auto-grow": "git@github.com:loonkwil/jquery.auto-grow.git",
     "zeroclipboard": "~1.2"
+  },
+  "devDependencies": {
+    "qunit": "~1.13"
   }
 }
