@@ -1,5 +1,6 @@
 {
-  "name": "regexify",
+  "name": "Regexify",
+  "description": "Regexify (live JavaScript RegEx tester)",
   "version": "0.1.1",
   "repository": {
     "type": "git",
