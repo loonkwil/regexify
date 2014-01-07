@@ -15,6 +15,8 @@
   "devDependencies": {
     "grunt": "~0.4",
     "grunt-contrib-qunit": "~0.3",
-    "grunt-bump": "~0.0.13"
+    "grunt-bump": "~0.0.13",
+    "grunt-contrib-cssmin": "~0.7",
+    "grunt-contrib-uglify": "~0.2"
   }
 }
