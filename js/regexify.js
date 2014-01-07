@@ -151,7 +151,7 @@
 
     // ZeroClipboard install
     ZeroClipboard.setDefaults({
-      moviePath: 'components/zeroclipboard/ZeroClipboard.swf',
+      moviePath: 'bower_components/zeroclipboard/ZeroClipboard.swf',
       activeClass: 'active',
       hoverClass: 'hover'
     });
