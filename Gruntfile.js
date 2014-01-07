@@ -3,6 +3,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-bump');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-htmlmin');
 
   // Project configuration.
   grunt.initConfig({
@@ -44,10 +45,24 @@ module.exports = function(grunt) {
           ]
         }
       }
+    },
+    htmlmin: {
+      dist: {
+        options: {
+          removeRedundantAttributes: true,
+          removeAttributeQuotes: true,
+          collapseBooleanAttributes: true,
+          collapseWhitespace: true,
+          removeComments: true
+        },
+        files: {
+          'index.min.html': 'index.html'
+        }
+      }
     }
   });
 
   // Task to run tests
   grunt.registerTask('test', 'qunit');
-  grunt.registerTask('dist', ['uglify:dist', 'cssmin']);
+  grunt.registerTask('dist', ['uglify:dist', 'cssmin', 'htmlmin']);
 };
