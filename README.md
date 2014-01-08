@@ -1,5 +1,7 @@
 # Regexify
 
+[![Build Status](https://travis-ci.org/loonkwil/regexify.png)](https://travis-ci.org/loonkwil/regexify)
+
 Live JavaScript regex tester
 
 ## Install dependencies
