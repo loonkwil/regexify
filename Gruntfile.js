@@ -6,6 +6,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
   // Project configuration.
   grunt.initConfig({
@@ -129,11 +130,14 @@ module.exports = function(grunt) {
           removeComments: true
         }
       }
+    },
+    jshint: {
+      all: ['Gruntfile.js', 'js/**/*.js', 'test/**/*.js']
     }
   });
 
   // Task to run tests
-  grunt.registerTask('test', 'qunit');
+  grunt.registerTask('test', ['qunit', 'jshint']);
   grunt.registerTask('dist', [
     'clean:truncate', 'copy', 'uglify', 'cssmin', 'htmlmin', 'clean:cleanUp'
   ]);
