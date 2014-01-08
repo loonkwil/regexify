@@ -1,4 +1,4 @@
-(function(window, undefined) {
+(function(window) {
   "use strict";
 
   var regexify = window.regexify = window.regexify || {};
