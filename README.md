@@ -2,21 +2,28 @@
 
 Live JavaScript regex tester
 
-## Install
+## Install dependencies
 
 Use the [gh-pages](https://github.com/loonkwil/regexify/tree/gh-pages) branch
 if you don't want to install anything.
 
-If you want to use this page like a native application, check out the
-[node-webkit](https://github.com/loonkwil/regexify/tree/node-webkit) branch.
-
-Requirements: [NodeJs](http://nodejs.org), [Bower](http://bower.io),
-[Grunt](http://gruntjs.com)
+Requirements: [NodeJs](http://nodejs.org), [Bower](http://bower.io)
 
  1. `bower install`
  2. `npm install`
 
+## Build (minifying and concatenating CSS, HTML, JS)
+
+Requirements: [Grunt](http://gruntjs.com)
+
+ 1. `grunt dist`
+
+Use the [node-webkit](https://github.com/rogerwang/node-webkit) project, if you
+want to create a desktop application.
+
 ## Tests
+
+Requirements: [Grunt](http://gruntjs.com)
 
 Running the tests:
 

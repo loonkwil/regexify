@@ -18,6 +18,14 @@
     "grunt-bump": "~0.0.13",
     "grunt-contrib-cssmin": "~0.7",
     "grunt-contrib-uglify": "~0.2",
-    "grunt-contrib-htmlmin": "~0.1"
+    "grunt-contrib-htmlmin": "~0.1",
+    "grunt-contrib-copy": "~0.5",
+    "grunt-contrib-clean": "~0.5"
+  },
+  "main": "index.html",
+  "window": {
+    "toolbar": false,
+    "min_width": 400,
+    "min_height": 200
   }
 }

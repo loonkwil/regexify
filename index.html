@@ -7,9 +7,15 @@
 
   <link rel="icon" type="image/x-icon" href="img/favicon.ico">
 
+  <!-- only for DEBUG -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="bower_components/jquery.auto-grow/src/auto-grow.css">
   <link rel="stylesheet" href="css/style.css">
+  <!-- end for DEBUG -->
+
+  <!-- only for PRODUCTION
+    <link rel="stylesheet" href="css/main.min.css">
+  end for PRODUCTION -->
 </head>
 <body hidden>
   <h1 class="page-header">Regexify <small>live JavaScript RegEx tester</small></h1>
@@ -45,6 +51,7 @@
     </table>
   </section>
 
+  <!-- only for DEBUG -->
   <script src="bower_components/jquery/jquery.js"></script>
   <script src="bower_components/bootstrap/js/button.js"></script>
   <script src="bower_components/jquery.auto-grow/src/jquery.auto-grow.js"></script>
@@ -55,5 +62,10 @@
   <script src="js/haystack.js"></script>
   <script src="js/matches.js"></script>
   <script src="js/regexify.js"></script>
+  <!-- end for DEBUG -->
+
+  <!-- only for PRODUCTION
+    <script src="js/base.min.js"></script>
+  end for PRODUCTION -->
 </body>
 </html>

@@ -12,6 +12,8 @@
   var regexifyHaystack = regexify.haystack;
   var regexifyMatches = regexify.matches;
 
+  var envirement = (typeof process === 'undefined') ? 'browser' : 'node-webkit';
+
 
   // cache
   var $pattern, $flags, $copy, $haystack, $matches;
@@ -149,21 +151,48 @@
       }
     });
 
-    // ZeroClipboard install
-    ZeroClipboard.setDefaults({
-      moviePath: 'bower_components/zeroclipboard/ZeroClipboard.swf',
-      activeClass: 'active',
-      hoverClass: 'hover'
-    });
+    if( envirement === 'browser' ) {
+      // ZeroClipboard install
+      ZeroClipboard.setDefaults({
+        /* only for DEBUG */
+        moviePath: 'bower_components/zeroclipboard/ZeroClipboard.swf',
+        /* end for DEBUG */
+        /* only for PRODUCTION
+        moviePath: 'flash/ZeroClipboard.swf',
+        end for PRODUCTION */
+        activeClass: 'active',
+        hoverClass: 'hover'
+      });
 
-    var clip = new ZeroClipboard($copy);
-    clip.on('dataRequested', function(client, args) {
-      clip.setText('/' + getRegexString() + '/' + getFlagsString());
-    });
+      var clip = new ZeroClipboard($copy);
+      clip.on('dataRequested', function(client, args) {
+        clip.setText('/' + getRegexString() + '/' + getFlagsString());
+      });
 
-    $(window).on('resize', function fixFlashPosition() {
-      clip.reposition();
-    });
+      $(window).on('resize', function fixFlashPosition() {
+        clip.reposition();
+      });
+
+      // Saveing the current state
+      $(window).on('beforeunload', function beforeCloseEvent() {
+        saveState();
+      });
+    }
+    else {
+      var gui = require('nw.gui');
+
+      var clipboard = gui.Clipboard.get();
+      $copy.on('click', function copyToClipboard() {
+        clipboard.set('/' + getRegexString() + '/' + getFlagsString(), 'text');
+      });
+
+      // Saveing the current state
+      var win = gui.Window.get();
+      win.on('close', function() {
+        saveState();
+        this.close(true);
+      });
+    }
 
     // events
     $flags.on('click', function flagsChangeEvent() {
@@ -172,10 +201,6 @@
       updateRegex();
 
       $haystack.trigger('input');
-    });
-
-    $(window).on('beforeunload', function beforeCloseEvent() {
-      saveState();
     });
   });
 })(window);

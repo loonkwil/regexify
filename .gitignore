@@ -1,7 +1,4 @@
 /doc
 /bower_components
 /node_modules
-/js/packed/*
-/css/packed/*
-index.min.html
-!*.gitkeep
+/dist
