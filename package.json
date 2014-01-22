@@ -21,7 +21,8 @@
     "grunt-contrib-htmlmin": "~0.1",
     "grunt-contrib-copy": "~0.5",
     "grunt-contrib-clean": "~0.5",
-    "grunt-contrib-jshint": "~0.8"
+    "grunt-contrib-jshint": "~0.8",
+    "grunt-node-webkit-builder": "~0.1"
   },
   "main": "index.html",
   "window": {

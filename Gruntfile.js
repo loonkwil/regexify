@@ -7,6 +7,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-node-webkit-builder');
 
   // Project configuration.
   grunt.initConfig({
@@ -21,39 +22,41 @@ module.exports = function(grunt) {
       }
     },
     clean: {
-      truncate: 'dist/*',
-      cleanUp: {
+      beforeAll: 'releases/*',
+      afterWeb: {
         files: [
           {
             expand: true,
             nonull: true,
-            cwd: 'dist/',
+            cwd: 'releases/web/',
             src: [
               'bower_components/', 'node_modules/', 'test/',
               'css/*.css', '!css/*.min.css',
               'js/*.js', '!js/*.min.js',
+              'img/*.icns'
             ]
           },
           {
             expand: true,
             nonull: true,
-            cwd: 'dist/',
+            cwd: 'releases/web/',
             filter: 'isFile',
             src: [ '*', '!package.json', '!index.html' ]
           }
         ]
-      }
+      },
+      afterNodeWebkit: 'releases/web/package.json'
     },
     copy: {
       dist: {
         files: [
-          { src: ['**', '!dist'], dest: 'dist/' },
+          { src: ['**', '!releases', '!cache/**'], dest: 'releases/web/' },
           {
             expand: true,
             nonull: true,
             flatten: true,
             src: 'bower_components/zeroclipboard/ZeroClipboard.swf',
-            dest: 'dist/flash/'
+            dest: 'releases/web/flash/'
           },
         ],
         options: {
@@ -94,34 +97,34 @@ module.exports = function(grunt) {
     uglify: {
       dist: {
         src: [
-          'dist/bower_components/jquery/jquery.js',
-          'dist/bower_components/bootstrap/js/button.js',
-          'dist/bower_components/jquery.auto-grow/src/jquery.auto-grow.js',
-          'dist/bower_components/regex-colorizer/regex-colorizer.js',
-          'dist/bower_components/zeroclipboard/ZeroClipboard.js',
-          'dist/js/escape.js',
-          'dist/js/pattern.js',
-          'dist/js/haystack.js',
-          'dist/js/matches.js',
-          'dist/js/regexify.js'
+          'releases/web/bower_components/jquery/jquery.js',
+          'releases/web/bower_components/bootstrap/js/button.js',
+          'releases/web/bower_components/jquery.auto-grow/src/jquery.auto-grow.js',
+          'releases/web/bower_components/regex-colorizer/regex-colorizer.js',
+          'releases/web/bower_components/zeroclipboard/ZeroClipboard.js',
+          'releases/web/js/escape.js',
+          'releases/web/js/pattern.js',
+          'releases/web/js/haystack.js',
+          'releases/web/js/matches.js',
+          'releases/web/js/regexify.js'
         ],
-        dest: 'dist/js/base.min.js'
+        dest: 'releases/web/js/base.min.js'
       }
     },
     cssmin: {
       dist: {
         src: [
-          'dist/bower_components/bootstrap/dist/css/bootstrap.css',
-          'dist/bower_components/jquery.auto-grow/src/auto-grow.css',
-          'dist/css/style.css'
+          'releases/web/bower_components/bootstrap/dist/css/bootstrap.css',
+          'releases/web/bower_components/jquery.auto-grow/src/auto-grow.css',
+          'releases/web/css/style.css'
         ],
-        dest: 'dist/css/main.min.css'
+        dest: 'releases/web/css/main.min.css'
       }
     },
     htmlmin: {
       dist: {
-        src: 'dist/index.html',
-        dest: 'dist/index.html',
+        src: 'releases/web/index.html',
+        dest: 'releases/web/index.html',
         options: {
           removeRedundantAttributes: true,
           removeAttributeQuotes: true,
@@ -133,12 +136,24 @@ module.exports = function(grunt) {
     },
     jshint: {
       all: ['Gruntfile.js', 'js/**/*.js', 'test/**/*.js']
+    },
+    nodewebkit: {
+      src: ['releases/web/**/*', '!releases/web/flash/**', '!**/*.ico'],
+      options: {
+        build_dir: './',
+        win: true,
+        mac: true,
+        linux32: true,
+        linux64: true,
+        mac_icns: 'img/logo.icns'
+      }
     }
   });
 
   // Task to run tests
   grunt.registerTask('test', ['qunit', 'jshint']);
   grunt.registerTask('dist', [
-    'clean:truncate', 'copy', 'uglify', 'cssmin', 'htmlmin', 'clean:cleanUp'
+    'clean:beforeAll', 'copy', 'uglify', 'cssmin', 'htmlmin', 'clean:afterWeb',
+    'nodewebkit', 'clean:afterNodeWebkit'
   ]);
 };
