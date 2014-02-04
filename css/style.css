@@ -106,3 +106,25 @@ i u { background: #efba4a; }
 .g5 { background: #b688cf; }
 
 b.err { background: #ff4300; }
+
+
+@media (max-width: 480px) {
+  body {
+    margin: 0 10px;
+  }
+
+  .page-header {
+    margin: 20px 0 10px;
+    text-align: center;
+  }
+  h1 {
+    font-size: 22px;
+  }
+  h1 small {
+    display: block;
+  }
+
+  #copy {
+    display: none;
+  }
+}
