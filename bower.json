@@ -2,11 +2,11 @@
   "name": "regexify",
   "version": "0.1.2",
   "dependencies": {
-    "jquery": "~2.0",
-    "bootstrap": "~3.0",
+    "jquery": "~2.1",
+    "bootstrap": "~3.1",
     "regex-colorizer": "git://github.com/slevithan/regex-colorizer.git",
     "jquery.auto-grow": "git://github.com/loonkwil/jquery.auto-grow.git",
-    "zeroclipboard": "~1.2"
+    "zeroclipboard": "~1.3"
   },
   "devDependencies": {
     "qunit": "~1.13"

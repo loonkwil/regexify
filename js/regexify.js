@@ -153,7 +153,7 @@
 
     if( envirement === 'browser' ) {
       // ZeroClipboard install
-      ZeroClipboard.setDefaults({
+      ZeroClipboard.config({
         /* only for DEBUG */
         moviePath: 'bower_components/zeroclipboard/ZeroClipboard.swf',
         /* end for DEBUG */
@@ -167,10 +167,6 @@
       var clip = new ZeroClipboard($copy);
       clip.on('dataRequested', function(client, args) {
         clip.setText('/' + getRegexString() + '/' + getFlagsString());
-      });
-
-      $(window).on('resize', function fixFlashPosition() {
-        clip.reposition();
       });
 
       // Saveing the current state
