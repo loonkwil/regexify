@@ -19,8 +19,9 @@ module.exports = function(grunt) {
   // Task for distributing
   grunt.loadTasks('grunt-tasks');
 
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-uncss');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
 
@@ -106,20 +107,15 @@ module.exports = function(grunt) {
       }
     },
 
-    cssmin: {
+    concat: {
       web: {
-        src: cssFilesForDistributing.map(function(oneFile) {
-          return 'releases/web/' + oneFile;
-        }),
+        src: cssFilesForDistributing,
         dest: 'releases/web/css/main.min.css'
       },
       desktop: {
-        src: cssFilesForDistributing.map(function(oneFile) {
-          return 'releases/desktop/' + oneFile;
-        }),
+        src: cssFilesForDistributing,
         dest: 'releases/desktop/css/main.min.css'
-      },
-      options: { keepSpecialComments: 0 }
+      }
     },
     uncss: {
       web: {
@@ -132,6 +128,17 @@ module.exports = function(grunt) {
           'releases/desktop/css/main.min.css': htmlFilesForDistributing
         }
       }
+    },
+    cssmin: {
+      web: {
+        src: 'releases/web/css/main.min.css',
+        dest: 'releases/web/css/main.min.css'
+      },
+      desktop: {
+        src: 'releases/desktop/css/main.min.css',
+        dest: 'releases/desktop/css/main.min.css'
+      },
+      options: { keepSpecialComments: 0 }
     },
     uglify: {
       web: {
@@ -251,13 +258,13 @@ module.exports = function(grunt) {
       web: [
         'clean:beforeWeb', 'copy:web',
         'deactivate-dev-only-code:web', 'activate-prod-only-code:web',
-        'cssmin:web', 'uncss:web', 'uglify:web', 'htmlmin:web',
+        'concat:web', 'uncss:web', 'cssmin:web', 'uglify:web', 'htmlmin:web',
         'clean:web'
       ],
       desktop: [
         'clean:beforeDesktop', 'copy:desktop',
         'deactivate-dev-only-code:desktop', 'activate-prod-only-code:desktop',
-        'cssmin:desktop', 'uncss:web', 'uglify:desktop', 'htmlmin:desktop',
+        'concat:desktop', 'uncss:desktop', 'cssmin:desktop', 'uglify:desktop', 'htmlmin:desktop',
         'clean:desktop',
         'nodewebkit',
         'clean:afterDesktop', 'rename:desktop'
