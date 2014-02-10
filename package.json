@@ -18,6 +18,7 @@
     "grunt-contrib-qunit": "~0.3",
     "grunt-contrib-jshint": "~0.8",
     "grunt-contrib-cssmin": "~0.7",
+    "grunt-uncss": "~0.2",
     "grunt-contrib-uglify": "~0.2",
     "grunt-contrib-htmlmin": "~0.1",
     "grunt-contrib-copy": "~0.5",
