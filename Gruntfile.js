@@ -183,7 +183,7 @@ module.exports = function(grunt) {
           {
             src: [
               '**', '!releases/**', '!cache/**', '!test/**', '!grunt-tasks/**',
-              '!**/*.psd'
+              '!**/*.psd', '!img/*.icns'
             ],
             dest: 'releases/web/'
           },
@@ -199,7 +199,7 @@ module.exports = function(grunt) {
           {
             src: [
               '**', '!releases/**', '!cache/**', '!test/**', '!grunt-tasks/**',
-              '!**/*.psd'
+              '!**/*.psd', '!img/*.icns'
             ],
             dest: 'releases/desktop/'
           }
@@ -215,8 +215,7 @@ module.exports = function(grunt) {
             'bower_components/',
             'node_modules/',
             'css/**/*.css', '!css/*.min.css',
-            'js/**/*.js', '!js/**/*.min.js',
-            'img/*.icns'
+            'js/**/*.js', '!js/**/*.min.js'
           ] },
           { expand: true, nonull: true, cwd: 'releases/web/', filter: 'isFile',
             src: [ '*', '!index.html' ]
@@ -244,7 +243,7 @@ module.exports = function(grunt) {
       options: {
         build_dir: './',
         win: true, mac: true, linux32: true, linux64: true,
-        mac_icns: 'releases/desktop/img/logo.icns'
+        mac_icns: 'img/logo.icns'
       }
     },
     rename: {
