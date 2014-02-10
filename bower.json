@@ -1,6 +1,6 @@
 {
   "name": "regexify",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "dependencies": {
     "jquery": "~2.1",
     "bootstrap": "~3.1",
