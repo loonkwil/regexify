@@ -50,7 +50,10 @@ module.exports = function(grunt) {
     copy: {
       dist: {
         files: [
-          { src: ['**', '!releases', '!cache/**'], dest: 'releases/web/' },
+          {
+            src: ['**', '!releases', '!cache/**', '!**/*.psd'],
+            dest: 'releases/web/'
+          },
           {
             expand: true,
             nonull: true,
