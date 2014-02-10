@@ -14,19 +14,19 @@ Requirements: [NodeJs](http://nodejs.org), [Bower](http://bower.io)
  1. `bower install`
  2. `npm install`
 
-## Build (minifying and concatenating CSS, HTML, JS)
+## Distributing
 
 Requirements: [Grunt](http://gruntjs.com)
 
- 1. `grunt dist`
+For desktop: `grunt dist:desktop`  
+For web: `grunt dist:web`  
+For both: `grunt dist:all`  
 
-Use the [node-webkit](https://github.com/rogerwang/node-webkit) project, if you
-want to create a desktop application.
+For bumping the version number in the package.json and the bower.json file:
+`grunt bump` (it will also create a commit, about this two changes)
 
-## Tests
+## Run the tests
 
 Requirements: [Grunt](http://gruntjs.com)
 
-Running the tests:
-
-`npm test`
+`npm test` or `grunt test`

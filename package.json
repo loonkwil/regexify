@@ -14,14 +14,15 @@
   },
   "devDependencies": {
     "grunt": "~0.4",
-    "grunt-contrib-qunit": "~0.3",
     "grunt-bump": "~0.0.13",
+    "grunt-contrib-qunit": "~0.3",
+    "grunt-contrib-jshint": "~0.8",
     "grunt-contrib-cssmin": "~0.7",
     "grunt-contrib-uglify": "~0.2",
     "grunt-contrib-htmlmin": "~0.1",
     "grunt-contrib-copy": "~0.5",
     "grunt-contrib-clean": "~0.5",
-    "grunt-contrib-jshint": "~0.8",
+    "grunt-rename": "~0.1",
     "grunt-node-webkit-builder": "~0.1"
   },
   "main": "index.html",
