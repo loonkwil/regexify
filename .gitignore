@@ -1,5 +1,24 @@
-/doc
-/bower_components
+
+dist
+.solid
+.output
+.vercel
+.netlify
+netlify
+
+# dependencies
 /node_modules
-/releases
-/cache
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+*.launch
+.settings/
+
+# Temp
+gitignore
+
+# System Files
+.DS_Store
+Thumbs.db

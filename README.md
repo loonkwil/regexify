@@ -1,32 +1,30 @@
-# Regexify
+# SolidStart
 
-[![Build Status](https://travis-ci.org/loonkwil/regexify.png)](https://travis-ci.org/loonkwil/regexify)
+Everything you need to build a Solid project, powered by [`solid-start`](https://start.solidjs.com);
 
-Live JavaScript regex tester
+## Creating a project
 
-## Install dependencies
+```bash
+# create a new project in the current directory
+npm init solid@latest
 
-Use the [gh-pages](https://github.com/loonkwil/regexify/tree/gh-pages) branch
-if you don't want to install anything.
+# create a new project in my-app
+npm init solid@latest my-app
+```
 
-Requirements: [NodeJs](http://nodejs.org), [Bower](http://bower.io)
+## Developing
 
- 1. `bower install`
- 2. `npm install`
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
-## Distributing
+```bash
+npm run dev
 
-Requirements: [Grunt](http://gruntjs.com)
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
+```
 
-For desktop: `grunt dist:desktop`  
-For web: `grunt dist:web`  
-For both: `grunt dist:all`  
+## Building
 
-For bumping the version number in the package.json and the bower.json file:
-`grunt bump` (it will also create a commit, about this two changes)
+Solid apps are built with _adapters_, which optimise your project for deployment to different environments.
 
-## Run the tests
-
-Requirements: [Grunt](http://gruntjs.com)
-
-`npm test` or `grunt test`
+By default, `npm run build` will generate a Node app that you can run with `npm start`. To use a different adapter, add it to the `devDependencies` in `package.json` and specify in your `vite.config.js`.

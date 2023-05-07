@@ -1,36 +1,25 @@
 {
   "name": "Regexify",
-  "description": "Regexify (live JavaScript RegEx tester)",
-  "version": "0.1.6",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:loonkwil/regexify.git"
+  "scripts": {
+    "dev": "solid-start dev",
+    "build": "solid-start build",
+    "start": "solid-start start"
+  },
+  "type": "module",
+  "devDependencies": {
+    "esbuild": "^0.14.54",
+    "postcss": "^8.4.21",
+    "solid-start-node": "^0.2.19",
+    "vite": "^4.1.4"
+  },
+  "dependencies": {
+    "@solidjs/meta": "^0.28.2",
+    "@solidjs/router": "^0.8.2",
+    "solid-js": "^1.7.2",
+    "solid-start": "^0.2.26",
+    "undici": "^5.15.1"
   },
   "engines": {
-    "node": ">= 0.10.0"
-  },
-  "scripts": {
-    "test": "grunt test"
-  },
-  "devDependencies": {
-    "grunt": "~0.4",
-    "grunt-bump": "~0.0.13",
-    "grunt-contrib-qunit": "~0.3",
-    "grunt-contrib-jshint": "~0.8",
-    "grunt-contrib-concat": "~0.3",
-    "grunt-uncss": "~0.2",
-    "grunt-contrib-cssmin": "~0.7",
-    "grunt-contrib-uglify": "~0.2",
-    "grunt-contrib-htmlmin": "~0.1",
-    "grunt-contrib-copy": "~0.5",
-    "grunt-contrib-clean": "~0.5",
-    "grunt-rename": "~0.1",
-    "grunt-node-webkit-builder": "~0.1"
-  },
-  "main": "index.html",
-  "window": {
-    "toolbar": false,
-    "min_width": 400,
-    "min_height": 200
+    "node": ">=16.8"
   }
 }
