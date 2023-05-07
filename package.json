@@ -1,5 +1,6 @@
 {
   "name": "Regexify",
+  "description": "Live JavaScript RegExp tester",
   "scripts": {
     "dev": "solid-start dev",
     "build": "solid-start build",
