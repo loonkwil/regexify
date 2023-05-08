@@ -1,0 +1,66 @@
+.root {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-areas:
+    "header"
+    "pattern"
+    "input"
+    "matches"
+    "footer";
+  grid-template-columns: 100%;
+  grid-template-rows: auto auto auto auto 1fr;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-area: header;
+}
+
+.privacy {
+  line-height: 1;
+}
+
+.pattern {
+  grid-area: pattern;
+}
+
+.input {
+  grid-area: input;
+}
+
+.matches {
+  grid-area: matches;
+}
+
+.matches table {
+  white-space: pre-wrap;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.matches table :is(th, td) {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border-secondary);
+}
+
+.matches table tr:last-child td {
+  border: none;
+}
+
+.footer {
+  grid-area: footer;
+  align-self: end;
+}
+
+@media screen and (min-width: 1024px) {
+  .root {
+    grid-template-areas:
+      "header header"
+      "pattern matches"
+      "input matches"
+      "footer footer";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto 1fr auto;
+  }
+}

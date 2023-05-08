@@ -14,6 +14,7 @@
     "vite": "^4.1.4"
   },
   "dependencies": {
+    "@fontsource/fira-mono": "^4.5.10",
     "@solidjs/meta": "^0.28.2",
     "@solidjs/router": "^0.8.2",
     "solid-js": "^1.7.2",

@@ -1,0 +1,111 @@
+@import "@fontsource/fira-mono";
+
+:root {
+  --black: #28292f;
+  --dark-gray: #c6c7d0;
+  --light-gray: #f2f2f2;
+  --yellow: #f6d578;
+  --red: #ff565e;
+  --white: #ffffff;
+
+  --bg: var(--light-gray);
+  --text-main: var(--black);
+  --text-secondary: var(--dark-gray);
+  --border-default: var(--black);
+  --border-active: var(--yellow);
+  --border-error: var(--red);
+  --border-secondary: var(--dark-gray);
+  --input-bg: var(--white);
+
+  --text-xl: 1.5rem; /* 24px */
+  --text-lg: 1.25rem; /* 20px */
+  --text-md: 1rem; /* 16px */
+  --text-sm: 0.75rem; /* 12px */
+  --text-xs: 0.5rem; /* 8px */
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html {
+  font: var(--text-md) "Fira Mono", monospace;
+  color: var(--text-main);
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  padding: 1.5rem 1rem;
+  display: grid;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+h1 {
+  font-size: var(--text-xl);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: var(--text-lg);
+  font-weight: 700;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+textarea {
+  font: inherit;
+  outline: none;
+  resize: none;
+  border: none;
+  color: inherit;
+}
+
+thead {
+  text-align: left;
+}
+
+small {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+mark {
+  background: var(--dark-gray);
+  color: inherit;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: var(--black);
+    --text-main: var(--white);
+    --text-secondary: var(--dark-gray);
+    --border-default: var(--white);
+    --border-active: var(--yellow);
+    --border-error: var(--red);
+    --border-secondary: var(--light-gray);
+    --input-bg: var(--black);
+  }
+}
