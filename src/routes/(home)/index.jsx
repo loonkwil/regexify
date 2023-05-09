@@ -1,6 +1,7 @@
 import { A } from "solid-start";
 import { Book } from "~/components/icons";
 import EnhancedTextarea from "~/components/EnhancedTextarea";
+import { pickOne } from "~/lib/helpers";
 import styles from "./index.module.css";
 
 function Header() {
@@ -93,10 +94,19 @@ function Matches() {
 }
 
 function Footer() {
+  const tips = [
+    "You can search in a large text because the app is using WebWorkers.",
+    "Use Ctrl + p to select the pattern and Ctrl + i to select the input field.",
+    "Use Ctrl + m to open the cheat sheet and Esc to come back to the home page.",
+    "Use Ctrl + s to copy the RegExp.",
+    "You can use a multiline string as a pattern",
+  ];
+  const tip = pickOne(tips);
+
   return (
     <footer class={styles.footer}>
       <p>
-        <small>Tip: You can use a multiline string as a pattern.</small>
+        <small>Tip: {tip}</small>
       </p>
     </footer>
   );
