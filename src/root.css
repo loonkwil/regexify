@@ -97,6 +97,11 @@ mark {
   color: inherit;
 }
 
+code {
+  background: var(--dark-gray);
+  padding: 0 0.1rem;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: var(--black);
