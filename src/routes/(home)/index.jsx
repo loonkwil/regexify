@@ -1,6 +1,6 @@
 import { A } from "solid-start";
-import { Book } from "../../components/icons";
-import EnhancedTextarea from "../../components/EnhancedTextarea";
+import { Book } from "~/components/icons";
+import EnhancedTextarea from "~/components/EnhancedTextarea";
 import styles from "./index.module.css";
 
 function Header() {

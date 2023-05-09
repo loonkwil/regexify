@@ -1,5 +1,5 @@
 import { A } from "solid-start";
-import { LeftArrow } from "../../components/icons";
+import { LeftArrow } from "~/components/icons";
 import styles from "./index.module.css";
 
 export default () => (
