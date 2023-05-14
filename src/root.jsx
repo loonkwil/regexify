@@ -11,9 +11,16 @@ import {
   Scripts,
   Title,
 } from "solid-start";
+import { AppProvider } from "./context/app";
 import "./root.css";
 
 export default function Root() {
+  const initialPattern = "/(?<cols>\\d+)x(?<rows>\\d+)/gi";
+  const initialInput = `/13x13/1c00a005000001400a00700000000000
+/13/1c00a005000001400a00700000000000
+/13x12/1c00a005000001400a00700000000000
+/13xA/1c00a005000001400a00700000000000`;
+
   return (
     <Html lang="en">
       <Head>
@@ -26,9 +33,11 @@ export default function Root() {
       </Head>
       <Body>
         <ErrorBoundary>
-          <Routes>
-            <FileRoutes />
-          </Routes>
+          <AppProvider pattern={initialPattern} input={initialInput}>
+            <Routes>
+              <FileRoutes />
+            </Routes>
+          </AppProvider>
         </ErrorBoundary>
         <Scripts />
       </Body>

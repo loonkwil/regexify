@@ -1,7 +1,9 @@
 import { A } from "solid-start";
+import { Index } from "solid-js";
 import { Book } from "~/components/icons";
 import EnhancedTextarea from "~/components/EnhancedTextarea";
-import { pickOne } from "~/lib/helpers";
+import { useAppState } from "~/context/app";
+import { pickOne, range } from "~/lib/helpers";
 import styles from "./index.module.css";
 
 function Header() {
@@ -27,68 +29,70 @@ function Header() {
 }
 
 function Pattern() {
+  const [state, { setPattern }] = useAppState();
   return (
     <section class={styles.pattern}>
       <EnhancedTextarea
-        spellcheck="false"
         label="Pattern"
-        initialValue="/(?<cols>\d+)x(?<rows>\d+)/i"
-        invalid="Invalid RegExp"
+        spellcheck="false"
+        invalid={
+          state.patternRegExp instanceof Error
+            ? state.patternRegExp.message
+            : ""
+        }
+        value={state.patternString}
+        setValue={setPattern}
       />
     </section>
   );
 }
 
 function Input() {
+  const [state, { setInput }] = useAppState();
   return (
     <section class={styles.input}>
       <EnhancedTextarea
-        spellcheck="false"
         label="Input"
-        initialValue="/13x13/1c00a005000001400a00700000000000
-/13/1c00a005000001400a00700000000000
-/13x12/1c00a005000001400a00700000000000
-/13xA/1c00a005000001400a00700000000000"
-        highlights={[
-          [1, 5],
-          [78, 5],
-        ]}
+        spellcheck="false"
         autofocus
+        highlights={state.matches.map((match) => {
+          const [[_, start, end]] = match;
+          return [start, end];
+        })}
+        value={state.inputString}
+        setValue={setInput}
       />
     </section>
   );
 }
 
 function Matches() {
+  const [state] = useAppState();
   return (
     <section class={styles.matches}>
-      <table>
-        <thead>
-          <tr>
-            <th>{`$&`}</th>
-            <th>{`$1`}</th>
-            <th>{`$2`}</th>
-            <th>{`$<cols>`}</th>
-            <th>{`$<rows>`}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>13x13</td>
-            <td>13</td>
-            <td>13</td>
-            <td>13</td>
-            <td>13</td>
-          </tr>
-          <tr>
-            <td>13x12</td>
-            <td>13</td>
-            <td>12</td>
-            <td>13</td>
-            <td>12</td>
-          </tr>
-        </tbody>
-      </table>
+      <Show when={state.matches.length > 0} fallback={<p>No match</p>}>
+        <table>
+          <thead>
+            <tr>
+              <th>$&</th>
+              <Index each={range(1, state.matches[0].length)}>
+                {(i) => <th>{`$${i()}`}</th>}
+              </Index>
+            </tr>
+          </thead>
+          <tbody>
+            <Index each={state.matches}>
+              {(match) => (
+                <tr>
+                  <Index each={match()}>
+                    {(groups) => <td>{groups()[0]}</td>}
+                  </Index>
+                </tr>
+              )}
+            </Index>
+          </tbody>
+        </table>
+      </Show>
     </section>
   );
 }

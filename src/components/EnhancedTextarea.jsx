@@ -1,10 +1,4 @@
-import {
-  createUniqueId,
-  createSignal,
-  createEffect,
-  mergeProps,
-  Show,
-} from "solid-js";
+import { createUniqueId, createEffect, mergeProps, Show } from "solid-js";
 import styles from "./EnhancedTextarea.module.css";
 
 /**
@@ -21,7 +15,6 @@ export default (props) => {
   props = mergeProps({ highlights: [] }, props);
 
   const id = createUniqueId();
-  const [text, setText] = createSignal(props.initialValue);
 
   let ref;
   createEffect(() => {
@@ -34,7 +27,7 @@ export default (props) => {
   const highlightedText = () => {
     // Hack: if the text ends with a new line character, we have to insert an
     // extra "\n" in order to have the same height as the textarea
-    const rawText = text().replace(/\n$/, "\n\n");
+    const rawText = props.value.replace(/\n$/, "\n\n");
 
     if (props.highlights.length === 0) {
       return rawText;
@@ -44,9 +37,7 @@ export default (props) => {
 
     const fragments = [];
     let cursor = 0;
-    for (let [highlightStart, highlightLength] of sortedHighlights) {
-      const highlightEnd = highlightStart + highlightLength;
-
+    for (let [highlightStart, highlightEnd] of sortedHighlights) {
       if (cursor < highlightStart) {
         fragments.push(rawText.substring(cursor, highlightStart));
       }
@@ -77,10 +68,12 @@ export default (props) => {
           rows="1"
           spellcheck={props.spellcheck}
           ref={ref}
-          onInput={(e) => setText(e.target.value)}
+          onInput={({ target: { value } }) => {
+            props.setValue(value);
+          }}
           autofocus={props.autofocus}
         >
-          {text()}
+          {props.value}
         </textarea>
       </div>
     </div>
