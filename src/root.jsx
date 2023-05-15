@@ -15,11 +15,24 @@ import { AppProvider } from "./context/app";
 import "./root.css";
 
 export default function Root() {
-  const initialPattern = "/(?<cols>\\d+)x(?<rows>\\d+)/gi";
-  const initialInput = `/13x13/1c00a005000001400a00700000000000
-/13/1c00a005000001400a00700000000000
-/13x12/1c00a005000001400a00700000000000
-/13xA/1c00a005000001400a00700000000000`;
+  const initialPattern = "/(?<modifier>ctrl|alt|cmd)\\s?[+]\\s?(?<key>\\w)/gi";
+  const initialInput = `🐭 Size and Speed
+It takes less than 50 kB to render the initial page.
+SolidJS and Server Side Rendering are used to be fast.
+
+🔒 Privacy
+Everything is calculated in your browser.
+Your data will not be uploaded or stored anywhere.
+There are no ads or cookies.
+
+⌨️ Keyboard Shortcuts
+Select pattern: Ctrl + P.
+Select input field: Ctrl + I.
+Copy RegExp: Ctrl + S.
+Open cheat sheet: Ctrl + M (hit Ctrl + M again to close it).
+
+✨ Extended RegExp
+You can use a multiline string as a pattern.`;
 
   return (
     <Html lang="en">

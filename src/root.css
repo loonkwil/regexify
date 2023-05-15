@@ -87,11 +87,6 @@ thead {
   text-align: left;
 }
 
-small {
-  font-size: var(--text-sm);
-  color: var(--text-secondary);
-}
-
 mark {
   background: var(--dark-gray);
   color: inherit;

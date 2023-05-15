@@ -3,7 +3,7 @@ import { Index } from "solid-js";
 import { Book } from "~/components/icons";
 import EnhancedTextarea from "~/components/EnhancedTextarea";
 import { useAppState } from "~/context/app";
-import { pickOne, range } from "~/lib/helpers";
+import { range } from "~/lib/helpers";
 import styles from "./index.module.css";
 
 function Header() {
@@ -11,13 +11,6 @@ function Header() {
     <header class={styles.header}>
       <div>
         <h1>JavaScript RegExp Tester</h1>
-        <p class={styles.privacy}>
-          <small>
-            Everything is calculated in your browser.
-            <br />
-            Your data will not be uploaded or stored anywhere.
-          </small>
-        </p>
       </div>
       <div>
         <A href="/cheat-sheet" title="RegExp Cheat Sheet">
@@ -97,31 +90,11 @@ function Matches() {
   );
 }
 
-function Footer() {
-  const tips = [
-    "You can search in a large text because the app is using WebWorkers.",
-    "Use Ctrl + p to select the pattern and Ctrl + i to select the input field.",
-    "Use Ctrl + m to open the cheat sheet and Esc to come back to the home page.",
-    "Use Ctrl + s to copy the RegExp.",
-    "You can use a multiline string as a pattern",
-  ];
-  const tip = pickOne(tips);
-
-  return (
-    <footer class={styles.footer}>
-      <p>
-        <small>Tip: {tip}</small>
-      </p>
-    </footer>
-  );
-}
-
 export default () => (
   <div class={styles.root}>
     <Header />
     <Pattern />
     <Input />
     <Matches />
-    <Footer />
   </div>
 );
