@@ -6,4 +6,8 @@ export default defineConfig({
       ssr: false,
     }),
   ],
+  test: {
+    include: ["src/**/*.{test,spec}.{js,ts}"],
+    globals: true,
+  },
 });

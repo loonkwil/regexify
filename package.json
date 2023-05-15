@@ -4,14 +4,17 @@
   "scripts": {
     "dev": "solid-start dev",
     "build": "solid-start build",
-    "start": "solid-start start"
+    "start": "solid-start start",
+    "test:unit": "vitest",
+    "test": "npm run test:unit"
   },
   "type": "module",
   "devDependencies": {
     "esbuild": "^0.17.19",
     "postcss": "^8.4.21",
     "solid-start-node": "^0.2.19",
-    "vite": "^4.1.4"
+    "vite": "^4.1.4",
+    "vitest": "^0.31.0"
   },
   "dependencies": {
     "@fontsource/fira-mono": "^4.5.10",
