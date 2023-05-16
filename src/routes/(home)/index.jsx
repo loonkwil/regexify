@@ -2,8 +2,8 @@ import { A } from "solid-start";
 import { Index } from "solid-js";
 import { Book } from "~/components/icons";
 import EnhancedTextarea from "~/components/EnhancedTextarea";
+import Range from "~/components/Range";
 import { useAppState } from "~/context/app";
-import { range } from "~/lib/helpers";
 import styles from "./index.module.css";
 
 function Header() {
@@ -68,9 +68,9 @@ function Matches() {
           <thead>
             <tr>
               <th>$&</th>
-              <Index each={range(1, state.matches[0].length)}>
+              <Range start={1} end={state.matches[0].length}>
                 {(i) => <th>{`$${i()}`}</th>}
-              </Index>
+              </Range>
             </tr>
           </thead>
           <tbody>
