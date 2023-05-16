@@ -1,12 +1,9 @@
 import { HttpStatusCode } from "solid-start/server";
-import styles from "./index.module.css";
+import ErrorMessage from "~/components/ErrorMessage";
 
 export default () => (
   <>
     <HttpStatusCode code={404} />
-    <div class={styles.root}>
-      <h2>(☉_☉)</h2>
-      <p>404 Page Not Found</p>
-    </div>
+    <ErrorMessage message="404 Page Not Found" />
   </>
 );

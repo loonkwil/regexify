@@ -11,7 +11,8 @@ import {
   Scripts,
   Title,
 } from "solid-start";
-import { AppProvider } from "./context/app";
+import { AppProvider } from "~/context/app";
+import ErrorMessage from "~/components/ErrorMessage";
 import "./root.css";
 
 export default function Root() {
@@ -45,7 +46,11 @@ You can use a multiline string as a pattern.`;
         <Link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       </Head>
       <Body>
-        <ErrorBoundary>
+        <ErrorBoundary
+          fallback={(e) => (
+            <ErrorMessage message="Something Went Wrong" error={e} />
+          )}
+        >
           <AppProvider pattern={initialPattern} input={initialInput}>
             <Routes>
               <FileRoutes />
