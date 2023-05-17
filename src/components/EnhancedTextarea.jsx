@@ -63,9 +63,15 @@ export default (props) => {
       </Show>
       <div class={styles.container}>
         <div>{highlightedText()}</div>
+        {
+          // By default, Firefox will persist the value of the textarea across page loads.
+          // With the feature, it is hard to keep the props.value the highlighted text and the textarea in sync.
+          // This feature can be disabled with the "autocomplete" attribute.
+        }
         <textarea
           id={id}
           rows="1"
+          autocomplete="off"
           spellcheck={props.spellcheck}
           ref={ref}
           onInput={({ target: { value } }) => {
