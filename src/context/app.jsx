@@ -1,6 +1,6 @@
 import { createContext, useContext, createMemo } from "solid-js";
 import { createStore } from "solid-js/store";
-import { getRegExpFromString } from "~/lib/helpers";
+import getRegExpFromString from "~/lib/getRegExpFromString";
 
 const AppContext = createContext();
 

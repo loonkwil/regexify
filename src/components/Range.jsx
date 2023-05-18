@@ -1,5 +1,5 @@
 import { Index } from "solid-js";
-import { range } from "~/lib/helpers";
+import range from "~/lib/range";
 
 /**
  * @param {Object} props
