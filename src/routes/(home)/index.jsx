@@ -1,10 +1,11 @@
-import { A } from "solid-start";
+import { A, useNavigate } from "solid-start";
 import { Index } from "solid-js";
 import { Book } from "~/components/icons";
 import EnhancedTextarea from "~/components/EnhancedTextarea";
 import Range from "~/components/Range";
 import { useAppState } from "~/context/app";
 import styles from "./index.module.css";
+import createShortcut from "~/lib/createShortcut";
 
 function Header() {
   return (
@@ -13,7 +14,7 @@ function Header() {
         <h1>JavaScript RegExp Tester</h1>
       </div>
       <div>
-        <A href="/cheat-sheet" title="RegExp Cheat Sheet">
+        <A href="/cheat-sheet" title="RegExp Cheat Sheet (Ctrl + M)">
           <Book />
         </A>
       </div>
@@ -21,12 +22,18 @@ function Header() {
   );
 }
 
-function Pattern() {
+/**
+ * @param {Object} props
+ * @param {Function} props.ref
+ */
+function Pattern(props) {
   const [state, { setPattern }] = useAppState();
   return (
     <section class={styles.pattern}>
       <EnhancedTextarea
+        ref={props.ref}
         label="Pattern"
+        title="RegExp pattern (Ctrl + P)"
         spellcheck="false"
         invalid={
           state.patternRegExp instanceof Error
@@ -40,12 +47,18 @@ function Pattern() {
   );
 }
 
-function Input() {
+/**
+ * @param {Object} props
+ * @param {Function} props.ref
+ */
+function Input(props) {
   const [state, { setInput }] = useAppState();
   return (
     <section class={styles.input}>
       <EnhancedTextarea
+        ref={props.ref}
         label="Input"
+        title="Text input (Ctrl + I)"
         spellcheck="false"
         autofocus
         highlights={state.matches.map((match) => {
@@ -90,11 +103,38 @@ function Matches() {
   );
 }
 
-export default () => (
-  <div class={styles.root}>
-    <Header />
-    <Pattern />
-    <Input />
-    <Matches />
-  </div>
-);
+export default () => {
+  const navigate = useNavigate();
+  createShortcut({ key: "m", ctrlKey: true }, (e) => {
+    e.preventDefault();
+    navigate("/cheat-sheet");
+  });
+
+  let patternEl;
+  createShortcut({ key: "p", ctrlKey: true }, (e) => {
+    e.preventDefault();
+    patternEl?.focus();
+  });
+
+  let inputEl;
+  createShortcut({ key: "i", ctrlKey: true }, (e) => {
+    e.preventDefault();
+    inputEl?.focus();
+  });
+
+  const [state] = useAppState();
+  createShortcut({ key: "s", ctrlKey: true }, (e) => {
+    e.preventDefault();
+    const text = state.patternRegExp.toString();
+    navigator.clipboard.writeText(text);
+  });
+
+  return (
+    <div class={styles.root}>
+      <Header />
+      <Pattern ref={patternEl} />
+      <Input ref={inputEl} />
+      <Matches />
+    </div>
+  );
+};

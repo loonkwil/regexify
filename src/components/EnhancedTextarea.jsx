@@ -9,18 +9,20 @@ import styles from "./EnhancedTextarea.module.css";
  * @param {string} props.label
  * @param {string=} props.spellcheck
  * @param {string=} props.autofocus
+ * @param {Function=} props.ref
+ * @param {string=} props.title
  * @returns {import('solid-js').JSX.Element}
  */
 export default (props) => {
-  props = mergeProps({ highlights: [] }, props);
+  props = mergeProps({ highlights: [], ref() {} }, props);
 
   const id = createUniqueId();
 
-  let ref;
+  let textareaEl;
   createEffect(() => {
-    if (ref) {
+    if (textareaEl) {
       const message = props.invalid ?? "";
-      ref.setCustomValidity(message);
+      textareaEl.setCustomValidity(message);
     }
   });
 
@@ -59,7 +61,9 @@ export default (props) => {
   return (
     <div class={styles.root}>
       <Show when={props.label}>
-        <label for={id}>{props.label}</label>
+        <label for={id} title={props.title}>
+          {props.label}
+        </label>
       </Show>
       <div class={styles.container}>
         <div>{highlightedText()}</div>
@@ -73,7 +77,10 @@ export default (props) => {
           rows="1"
           autocomplete="off"
           spellcheck={props.spellcheck}
-          ref={ref}
+          ref={(el) => {
+            textareaEl = el;
+            props.ref(el);
+          }}
           onInput={({ target: { value } }) => {
             props.setValue(value);
           }}
