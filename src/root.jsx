@@ -53,7 +53,16 @@ You can use a multiline string as a pattern.`;
         >
           <ErrorBoundary
             fallback={(e) => (
-              <ErrorMessage message="Something Went Wrong" error={e} />
+              <ErrorMessage
+                message={
+                  <>
+                    Something Went Wrong
+                    <br />
+                    <a href="/">Try to reload the page</a>
+                  </>
+                }
+                error={e}
+              />
             )}
           >
             <AppProvider pattern={initialPattern} input={initialInput}>
