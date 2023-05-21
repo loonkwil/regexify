@@ -9,7 +9,10 @@ const AppContext = createContext();
  * @property {string} patternString
  * @property {string} inputString
  * @property {RegExp | SyntaxError} patternRegExp
- * @property {Array} matches
+ * @property {{
+ *   texts: Array<Array<string>>,
+ *   indices: Array<Array<number>>
+ * }} matches
  */
 
 /**
@@ -50,33 +53,33 @@ export function AppProvider(props) {
   });
 
   getMatches = createMemo(() => {
-    const { patternRegExp: regexp, inputString: input } = appState;
+    const { patternRegExp: regExp, inputString: input } = appState;
 
-    const isValid = regexp instanceof RegExp;
-    if (!isValid) {
-      return [];
+    const texts = [];
+    const indices = [];
+
+    const isValid = regExp instanceof RegExp;
+    if (isValid) {
+      // Set the "d" flag in order to read the indices of the matching groups
+      const regExpWithIndices = regExp.hasIndices
+        ? regExp
+        : new RegExp(regExp, `${regExp.flags}d`);
+
+      let matches;
+      if (regExpWithIndices.global) {
+        matches = input.matchAll(regExpWithIndices);
+      } else {
+        const match = input.match(regExpWithIndices);
+        matches = match ? [match] : [];
+      }
+
+      for (let match of matches) {
+        texts.push(Array.from(match));
+        indices.push(match.indices);
+      }
     }
 
-    // Set the "d" flag in order to read the indices of the matching groups
-    const regexpWithIndices = regexp.hasIndices
-      ? regexp
-      : new RegExp(regexp, `${regexp.flags}d`);
-
-    let matches;
-    if (regexpWithIndices.global) {
-      matches = input.matchAll(regexpWithIndices);
-    } else {
-      const match = input.match(regexpWithIndices);
-      matches = match ? [match] : [];
-    }
-
-    return Array.from(matches, (match) => {
-      const { indices } = match;
-      return Array.from(match, (group, index) => {
-        const position = indices[index] ?? [];
-        return [group, ...position];
-      });
-    });
+    return { texts, indices };
   });
 
   const app = [

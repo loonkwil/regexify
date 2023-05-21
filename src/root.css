@@ -74,16 +74,20 @@ a {
   color: inherit;
 }
 
+button {
+  font: inherit;
+  color: inherit;
+  border: none;
+  padding: 0;
+  background: transparent;
+}
+
 textarea {
   font: inherit;
   outline: none;
   resize: none;
   border: none;
   color: inherit;
-}
-
-thead {
-  text-align: left;
 }
 
 mark {

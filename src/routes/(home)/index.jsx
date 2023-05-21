@@ -1,8 +1,8 @@
 import { A, useNavigate } from "solid-start";
-import { Index } from "solid-js";
 import { Book } from "~/components/icons";
 import EnhancedTextarea from "~/components/EnhancedTextarea";
-import Range from "~/components/Range";
+import Table from "~/components/Table";
+import range from "~/lib/range";
 import { useAppState } from "~/context/app";
 import styles from "./index.module.css";
 import createShortcut from "~/lib/createShortcut";
@@ -61,10 +61,9 @@ function Input(props) {
         title="Text input (Ctrl + I)"
         spellcheck="false"
         autofocus
-        highlights={state.matches.map((match) => {
-          const [[_, start, end]] = match;
-          return [start, end];
-        })}
+        highlights={state.matches.indices.map(
+          ([matchPosition]) => matchPosition
+        )}
         value={state.inputString}
         setValue={setInput}
       />
@@ -76,28 +75,15 @@ function Matches() {
   const [state] = useAppState();
   return (
     <section class={styles.matches}>
-      <Show when={state.matches.length > 0} fallback={<p>No match</p>}>
-        <table>
-          <thead>
-            <tr>
-              <th>$&</th>
-              <Range start={1} end={state.matches[0].length}>
-                {(i) => <th>{`$${i()}`}</th>}
-              </Range>
-            </tr>
-          </thead>
-          <tbody>
-            <Index each={state.matches}>
-              {(match) => (
-                <tr>
-                  <Index each={match()}>
-                    {(groups) => <td>{groups()[0]}</td>}
-                  </Index>
-                </tr>
-              )}
-            </Index>
-          </tbody>
-        </table>
+      <Show when={state.matches.texts.length > 0} fallback={<p>No match</p>}>
+        <Table
+          header={[
+            "$&",
+            ...range(1, state.matches.texts[0].length).map((i) => `$${i}`),
+          ]}
+          data={state.matches.texts}
+          rowLimit={10}
+        />
       </Show>
     </section>
   );

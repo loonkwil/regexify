@@ -28,21 +28,6 @@
   grid-area: matches;
 }
 
-.matches table {
-  white-space: pre-wrap;
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.matches table :is(th, td) {
-  padding: 0.5rem 0.75rem;
-  border-bottom: 1px solid var(--border-secondary);
-}
-
-.matches table tr:last-child td {
-  border: none;
-}
-
 @media screen and (min-width: 1024px) {
   .root {
     grid-template-areas:

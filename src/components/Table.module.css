@@ -1,0 +1,22 @@
+.root {
+  white-space: pre-wrap;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.root :is(th, td) {
+  padding: 0.5rem 0.75rem;
+}
+
+.root thead {
+  text-align: left;
+}
+
+.root tbody td {
+  border-top: 1px solid var(--border-secondary);
+}
+
+.root button {
+  cursor: pointer;
+  text-decoration: underline;
+}
