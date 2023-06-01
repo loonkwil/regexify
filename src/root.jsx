@@ -11,6 +11,7 @@ import {
   Scripts,
   Title,
 } from "solid-start";
+import { Show } from "solid-js";
 import { AppProvider } from "~/context/app";
 import ErrorMessage from "~/components/ErrorMessage";
 import isModernRegExpSupported from "~/lib/isModernRegExpSupported";

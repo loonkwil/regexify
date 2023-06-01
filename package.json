@@ -11,6 +11,8 @@
   "type": "module",
   "devDependencies": {
     "esbuild": "^0.17.19",
+    "eslint": "^8.41.0",
+    "eslint-plugin-solid": "^0.12.1",
     "postcss": "^8.4.21",
     "solid-start-static": "^0.2.26",
     "vite": "^4.1.4",
