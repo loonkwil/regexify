@@ -13,12 +13,14 @@ const AppContext = createContext();
  *   texts: Array<Array<string>>,
  *   indices: Array<Array<number>>
  * }} matches
+ * @property {?Array<number>} hoverPosition
  */
 
 /**
  * @typedef {Object} Setters
  * @property {function(string)} setInput
  * @property {function(string)} setPattern
+ * @property {function(?Array<number>=)} setHoverPosition
  */
 
 /**
@@ -34,6 +36,7 @@ export function AppProvider(props) {
   const [appState, setAppState] = createStore({
     patternString: props.pattern ?? "",
     inputString: props.input ?? "",
+    hoverPosition: null,
 
     get patternRegExp() {
       return getPatternRegExp();
@@ -90,6 +93,9 @@ export function AppProvider(props) {
       },
       setPattern(value) {
         setAppState("patternString", value);
+      },
+      setHoverPosition(value = null) {
+        setAppState("hoverPosition", value);
       },
     },
   ];

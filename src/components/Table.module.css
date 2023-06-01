@@ -1,10 +1,10 @@
-.root {
+.root table {
   white-space: pre-wrap;
   width: 100%;
   border-collapse: collapse;
 }
 
-.root :is(th, td) {
+.root :is(th, td, button) {
   padding: 0.5rem 0.75rem;
 }
 

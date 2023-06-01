@@ -1,4 +1,5 @@
-import { A, useNavigate } from "solid-start";
+import { A, Style, useNavigate } from "solid-start";
+import { createMemo, Show } from "solid-js";
 import { Book } from "~/components/icons";
 import EnhancedTextarea from "~/components/EnhancedTextarea";
 import Table from "~/components/Table";
@@ -53,26 +54,63 @@ function Pattern(props) {
  */
 function Input(props) {
   const [state, { setInput }] = useAppState();
+  const selector = createMemo(() => {
+    if (!state.hoverPosition) {
+      return null;
+    }
+
+    const {
+      hoverPosition: [row, col],
+    } = state;
+    const isHeader = row === -1;
+    const isFirstColumn = col === 0;
+
+    if (isHeader && isFirstColumn) {
+      return null;
+    }
+
+    let selector = `.${styles.input}`;
+
+    if (!isHeader) {
+      selector += ` [data-row="${row}"]`;
+    }
+
+    if (!isFirstColumn) {
+      selector += ` [data-col="${col - 1}"]`;
+    }
+
+    return selector;
+  });
+
   return (
-    <section class={styles.input}>
-      <EnhancedTextarea
-        ref={props.ref}
-        label="Input"
-        title="Text input (Ctrl + I)"
-        spellcheck="false"
-        autofocus
-        highlights={state.matches.indices.map(
-          ([matchPosition]) => matchPosition
-        )}
-        value={state.inputString}
-        setValue={setInput}
-      />
-    </section>
+    <>
+      <Style>
+        {
+          // Hack: if the Style tag is empty, Solid Start will render it like
+          // this: "<style />" which is invalid, hence the fallback attribute.
+        }
+        <Show when={selector()} fallback={" "}>
+          {`${selector()} { background-color: var(--mark-bg-active); }`}
+        </Show>
+      </Style>
+      <section class={styles.input}>
+        <EnhancedTextarea
+          ref={props.ref}
+          label="Input"
+          title="Text input (Ctrl + I)"
+          spellcheck="false"
+          autofocus
+          highlights={state.matches.indices}
+          value={state.inputString}
+          setValue={setInput}
+        />
+      </section>
+    </>
   );
 }
 
 function Matches() {
-  const [state] = useAppState();
+  const [state, { setHoverPosition }] = useAppState();
   return (
     <section class={styles.matches}>
       <Show when={state.matches.texts.length > 0} fallback={<p>No match</p>}>
@@ -81,6 +119,8 @@ function Matches() {
             "$&",
             ...range(1, state.matches.texts[0].length).map((i) => `$${i}`),
           ]}
+          onHover={setHoverPosition}
+          onLeave={setHoverPosition}
           data={state.matches.texts}
           rowLimit={10}
         />

@@ -1,17 +1,18 @@
 import { createUniqueId, createEffect, mergeProps, Show } from "solid-js";
+import markText from "~/lib/markText";
 import styles from "./EnhancedTextarea.module.css";
 
 /**
  * @param {Object} props
  * @param {string} props.initialValue
- * @param {Array<Array<number>=} props.highlights
+ * @param {Array<Array<Array<number>>>=} props.highlights
  * @param {string=} props.invalid
  * @param {string} props.label
  * @param {string=} props.spellcheck
  * @param {string=} props.autofocus
  * @param {Function=} props.ref
  * @param {string=} props.title
- * @returns {import('solid-js').JSX.Element}
+ * @returns {Element}
  */
 export default (props) => {
   props = mergeProps({ highlights: [], ref() {} }, props);
@@ -35,27 +36,25 @@ export default (props) => {
       return rawText;
     }
 
-    const sortedHighlights = props.highlights.sort((a, b) => a[0] - b[0]);
-
-    const fragments = [];
-    let cursor = 0;
-    for (let [highlightStart, highlightEnd] of sortedHighlights) {
-      if (cursor < highlightStart) {
-        fragments.push(rawText.substring(cursor, highlightStart));
-      }
-
-      fragments.push(
-        <mark>{rawText.substring(highlightStart, highlightEnd)}</mark>
-      );
-
-      cursor = highlightEnd;
+    const mainMarks = [];
+    const subMarks = [];
+    for (const positions of props.highlights) {
+      mainMarks.push(positions[0]);
+      subMarks.push(positions.slice(1));
     }
 
-    if (cursor < rawText.length - 1) {
-      fragments.push(rawText.substring(cursor));
-    }
-
-    return fragments;
+    return markText(rawText, mainMarks, (mainText, rowIndex, boundary) => (
+      <mark data-row={rowIndex}>
+        {markText(
+          mainText,
+          subMarks[rowIndex],
+          (subText, colIndex) => (
+            <span data-col={colIndex}>{subText}</span>
+          ),
+          boundary[0]
+        )}
+      </mark>
+    ));
   };
 
   return (

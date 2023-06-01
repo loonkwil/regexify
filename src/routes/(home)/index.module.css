@@ -24,6 +24,22 @@
   grid-area: input;
 }
 
+.input mark {
+  background-color: var(--mark-bg-default);
+  transition: background-color 200ms;
+}
+
+.input mark span {
+  background-color: transparent;
+  transition: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .input mark {
+    transition-duration: 0ms;
+  }
+}
+
 .matches {
   grid-area: matches;
 }

@@ -15,6 +15,8 @@
   --border-active: var(--yellow);
   --border-error: var(--red);
   --border-secondary: var(--dark-gray);
+  --mark-bg-default: var(--dark-gray);
+  --mark-bg-active: var(--yellow);
   --input-bg: var(--white);
 
   --text-xl: 1.5rem; /* 24px */
@@ -91,7 +93,6 @@ textarea {
 }
 
 mark {
-  background: var(--dark-gray);
   color: inherit;
 }
 
@@ -104,10 +105,7 @@ code {
   :root {
     --bg: var(--black);
     --text-main: var(--white);
-    --text-secondary: var(--dark-gray);
     --border-default: var(--white);
-    --border-active: var(--yellow);
-    --border-error: var(--red);
     --border-secondary: var(--light-gray);
     --input-bg: var(--black);
   }
