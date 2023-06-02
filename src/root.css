@@ -1,5 +1,6 @@
 @import "@fontsource/fira-mono";
 
+/* Variable declarations */
 :root {
   --black: #28292f;
   --dark-gray: #c6c7d0;
@@ -24,8 +25,17 @@
   --text-md: 1rem; /* 16px */
   --text-sm: 0.75rem; /* 12px */
   --text-xs: 0.5rem; /* 8px */
+
+  @media (prefers-color-scheme: dark) {
+    --bg: var(--black);
+    --text-main: var(--white);
+    --border-default: var(--white);
+    --border-secondary: var(--light-gray);
+    --input-bg: var(--black);
+  }
 }
 
+/* Resets */
 html {
   box-sizing: border-box;
 }
@@ -36,6 +46,7 @@ html {
   box-sizing: inherit;
 }
 
+/* Global formatting */
 html {
   font: var(--text-md) "Fira Mono", monospace;
   color: var(--text-main);
@@ -98,15 +109,4 @@ mark {
 
 code {
   background: var(--dark-gray);
-  padding: 0 0.1rem;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: var(--black);
-    --text-main: var(--white);
-    --border-default: var(--white);
-    --border-secondary: var(--light-gray);
-    --input-bg: var(--black);
-  }
 }

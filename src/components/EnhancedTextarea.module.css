@@ -1,7 +1,6 @@
 .root {
   resize: vertical;
   border: 2px solid var(--border-default);
-  transition: border-color 200ms;
   border-radius: 0.5rem;
   background: var(--input-bg);
   padding: 0.5rem 0.75rem 0.5rem;
@@ -11,43 +10,41 @@
   grid-template-rows: auto 1fr;
   min-height: 4rem;
   user-select: none;
-}
+  transition: border-color 200ms;
+  @media (prefers-reduced-motion: reduce) {
+    transition-duration: 0ms;
+  }
 
-.root:focus-within {
-  border-color: var(--border-active);
-}
+  &:focus-within {
+    border-color: var(--border-active);
+  }
 
-.root:has(textarea:invalid) {
-  border-color: var(--border-error);
-}
+  &:has(textarea:invalid) {
+    border-color: var(--border-error);
+  }
 
-.root label {
-  font-size: var(--text-sm);
-  color: var(--text-secondary);
+  & label {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+  }
 }
 
 .container {
   overflow: auto;
   height: 100%;
   display: grid;
-}
 
-.container > * {
-  grid-area: 1 / 1;
-  border: none;
-  padding: 0;
-  margin: 0;
-  white-space: pre-wrap;
-  background: transparent;
-  color: transparent;
-}
+  & > * {
+    grid-area: 1 / 1;
+    border: none;
+    padding: 0;
+    margin: 0;
+    white-space: pre-wrap;
+    background: transparent;
+    color: transparent;
+  }
 
-.container > textarea {
-  color: var(--text-main);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .root {
-    transition-duration: 0ms;
+  & > textarea {
+    color: var(--text-main);
   }
 }

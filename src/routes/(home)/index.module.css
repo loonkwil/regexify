@@ -8,6 +8,15 @@
     "matches";
   grid-template-columns: 100%;
   grid-template-rows: auto auto auto 1fr;
+
+  @media screen and (min-width: 1024px) {
+    grid-template-areas:
+      "header header"
+      "pattern matches"
+      "input matches";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto 1fr;
+  }
 }
 
 .header {
@@ -22,35 +31,21 @@
 
 .input {
   grid-area: input;
-}
 
-.input mark {
-  background-color: var(--mark-bg-default);
-  transition: background-color 200ms;
-}
+  & mark {
+    background-color: var(--mark-bg-default);
+    transition: background-color 200ms;
+    @media (prefers-reduced-motion: reduce) {
+      transition-duration: 0ms;
+    }
 
-.input mark span {
-  background-color: transparent;
-  transition: inherit;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .input mark {
-    transition-duration: 0ms;
+    & span {
+      background-color: transparent;
+      transition: inherit;
+    }
   }
 }
 
 .matches {
   grid-area: matches;
-}
-
-@media screen and (min-width: 1024px) {
-  .root {
-    grid-template-areas:
-      "header header"
-      "pattern matches"
-      "input matches";
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto 1fr;
-  }
 }

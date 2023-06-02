@@ -4,9 +4,9 @@
   align-content: center;
   gap: 2rem;
   text-align: center;
-}
 
-.root h2 {
-  font-weight: normal;
-  font-size: 3rem;
+  & h2 {
+    font-weight: normal;
+    font-size: 3rem;
+  }
 }

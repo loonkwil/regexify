@@ -11,10 +11,14 @@ import {
   Scripts,
   Title,
 } from "solid-start";
+import { isServer } from "solid-js/web";
 import { Show } from "solid-js";
 import { AppProvider } from "~/context/app";
 import ErrorMessage from "~/components/ErrorMessage";
-import isModernRegExpSupported from "~/lib/isModernRegExpSupported";
+import {
+  isModernRegExpSupported,
+  isCSSNestingSupported,
+} from "~/lib/featureDetection";
 import "./root.css";
 
 export default function Root() {
@@ -49,8 +53,34 @@ You can use a multiline string as a pattern.`;
       </Head>
       <Body>
         <Show
-          when={isModernRegExpSupported()}
-          fallback={<ErrorMessage message="Your Browser is not Supported" />}
+          when={
+            isServer || (isModernRegExpSupported() && isCSSNestingSupported())
+          }
+          fallback={
+            <ErrorMessage
+              message={
+                <>
+                  Your Browser is not Supported
+                  <br />
+                  Try to use a browser that supports{" "}
+                  <a
+                    href="https://drafts.csswg.org/css-nesting/"
+                    target="_blank"
+                  >
+                    nested CSS
+                  </a>{" "}
+                  and the{" "}
+                  <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/matchAll"
+                    target="_blank"
+                  >
+                    matchAll
+                  </a>{" "}
+                  RegExp function (Chrome 112+, Safari 16.5+, Firefox 116+).
+                </>
+              }
+            />
+          }
         >
           <ErrorBoundary
             fallback={(e) => (
