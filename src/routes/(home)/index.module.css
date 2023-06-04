@@ -34,7 +34,7 @@
 
   & mark {
     background-color: var(--mark-bg-default);
-    transition: background-color 200ms;
+    transition: background-color 150ms;
     @media (prefers-reduced-motion: reduce) {
       transition-duration: 0ms;
     }

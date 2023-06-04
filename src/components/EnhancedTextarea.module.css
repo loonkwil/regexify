@@ -10,7 +10,7 @@
   grid-template-rows: auto 1fr;
   min-height: 4rem;
   user-select: none;
-  transition: border-color 200ms;
+  transition: border-color 150ms;
   @media (prefers-reduced-motion: reduce) {
     transition-duration: 0ms;
   }
