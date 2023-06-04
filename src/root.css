@@ -49,6 +49,7 @@ html {
 /* Global formatting */
 html {
   font: var(--text-md) "Fira Mono", monospace;
+  line-height: 1.25rem;
   color: var(--text-main);
   background: var(--bg);
 }
