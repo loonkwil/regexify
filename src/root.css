@@ -1,5 +1,3 @@
-@import "@fontsource/fira-mono";
-
 /* Variable declarations */
 :root {
   --black: #28292f;
@@ -48,8 +46,8 @@ html {
 
 /* Global formatting */
 html {
-  font: var(--text-md) "Fira Mono", monospace;
-  line-height: 1.25rem;
+  font: var(--text-md) / 1.25rem "SF Mono", "Consolas", "DejaVu Sans Mono",
+    "Roboto Mono", monospace;
   color: var(--text-main);
   background: var(--bg);
 }

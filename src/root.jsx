@@ -24,7 +24,7 @@ import "./root.css";
 export default function Root() {
   const initialPattern = "/(?<modifier>ctrl|alt|cmd)\\s?[+]\\s?(?<key>\\w)/gi";
   const initialInput = `🐭 Size and Speed
-It takes less than 50 kB to render the initial page.
+It takes less than 30 kB to render the initial page.
 SolidJS and Server Side Rendering are used to be fast.
 
 🔒 Privacy

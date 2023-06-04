@@ -19,7 +19,6 @@
     "vitest": "^0.31.0"
   },
   "dependencies": {
-    "@fontsource/fira-mono": "^5.0.2",
     "@solidjs/meta": "^0.28.2",
     "@solidjs/router": "^0.8.2",
     "solid-js": "^1.7.2",
