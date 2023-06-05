@@ -14,6 +14,7 @@ const AppContext = createContext();
  *   indices: Array<Array<number>>
  * }} matches
  * @property {?Array<number>} hoverPosition
+ * @property {boolean} animatePattern
  */
 
 /**
@@ -21,6 +22,7 @@ const AppContext = createContext();
  * @property {function(string)} setInput
  * @property {function(string)} setPattern
  * @property {function(?Array<number>=)} setHoverPosition
+ * @property {function(boolean)} setAnimatePattern
  */
 
 /**
@@ -37,6 +39,7 @@ export function AppProvider(props) {
     patternString: props.pattern ?? "",
     inputString: props.input ?? "",
     hoverPosition: null,
+    animatePattern: false,
 
     get patternRegExp() {
       return getPatternRegExp();
@@ -96,6 +99,9 @@ export function AppProvider(props) {
       },
       setHoverPosition(value = null) {
         setAppState("hoverPosition", value);
+      },
+      setAnimatePattern(value) {
+        setAppState("animatePattern", value);
       },
     },
   ];

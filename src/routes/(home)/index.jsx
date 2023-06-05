@@ -28,11 +28,15 @@ function Header() {
  * @param {Function} props.ref
  */
 function Pattern(props) {
-  const [state, { setPattern }] = useAppState();
+  const [state, { setPattern, setAnimatePattern }] = useAppState();
   return (
-    <section class={styles.pattern}>
+    <section
+      class={styles.pattern}
+      onAnimationEnd={() => setAnimatePattern(false)}
+    >
       <EnhancedTextarea
         ref={props.ref}
+        containerClasses={state.animatePattern ? styles.animate : ""}
         label="Pattern"
         title="RegExp pattern (Ctrl + P)"
         spellcheck="false"
@@ -148,11 +152,13 @@ export default () => {
     inputEl?.focus();
   });
 
-  const [state] = useAppState();
+  const [state, { setAnimatePattern }] = useAppState();
   createShortcut({ key: "s", ctrlKey: true }, (e) => {
     e.preventDefault();
     const text = state.patternRegExp.toString();
-    navigator.clipboard.writeText(text);
+    navigator.clipboard.writeText(text).then(() => {
+      setAnimatePattern(true);
+    });
   });
 
   return (

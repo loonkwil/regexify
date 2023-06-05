@@ -29,6 +29,10 @@
   grid-area: pattern;
 }
 
+.animate {
+  animation: blink 150ms 1;
+}
+
 .input {
   grid-area: input;
 
@@ -48,4 +52,18 @@
 
 .matches {
   grid-area: matches;
+}
+
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

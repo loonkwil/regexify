@@ -12,10 +12,11 @@ import styles from "./EnhancedTextarea.module.css";
  * @param {string=} props.autofocus
  * @param {Function=} props.ref
  * @param {string=} props.title
+ * @param {string=} props.containerClasses
  * @returns {Element}
  */
 export default (props) => {
-  props = mergeProps({ highlights: [], ref() {} }, props);
+  props = mergeProps({ highlights: [], ref() {}, containerClasses: "" }, props);
 
   const id = createUniqueId();
 
@@ -64,7 +65,7 @@ export default (props) => {
           {props.label}
         </label>
       </Show>
-      <div class={styles.container}>
+      <div class={`${styles.container} ${props.containerClasses}`}>
         <div>{highlightedText()}</div>
         {
           // By default, Firefox will persist the value of the textarea across page loads.
