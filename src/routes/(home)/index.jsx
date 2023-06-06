@@ -1,5 +1,5 @@
 import { A, Style, useNavigate } from "solid-start";
-import { createMemo, Show } from "solid-js";
+import { createMemo, Show, Switch, Match } from "solid-js";
 import { Book } from "~/components/icons";
 import EnhancedTextarea from "~/components/EnhancedTextarea";
 import Table from "~/components/Table";
@@ -36,16 +36,16 @@ function Pattern(props) {
     >
       <EnhancedTextarea
         ref={props.ref}
-        containerClasses={state.animatePattern ? styles.animate : ""}
+        containerClasses={state.animatePattern() ? styles.animate : ""}
         label="Pattern"
         title="RegExp pattern (Ctrl + P)"
         spellcheck="false"
         invalid={
-          state.patternRegExp instanceof Error
-            ? state.patternRegExp.message
+          state.patternRegExp() instanceof Error
+            ? state.patternRegExp().message
             : ""
         }
-        value={state.patternString}
+        value={state.patternString()}
         setValue={setPattern}
       />
     </section>
@@ -59,13 +59,11 @@ function Pattern(props) {
 function Input(props) {
   const [state, { setInput }] = useAppState();
   const selector = createMemo(() => {
-    if (!state.hoverPosition) {
+    if (!state.hoverPosition()) {
       return null;
     }
 
-    const {
-      hoverPosition: [row, col],
-    } = state;
+    const [row, col] = state.hoverPosition();
     const isHeader = row === -1;
     const isFirstColumn = col === 0;
 
@@ -86,6 +84,13 @@ function Input(props) {
     return selector;
   });
 
+  const highlights = createMemo(() => {
+    if (state.processing()) {
+      return [];
+    }
+    return state.matches().indices;
+  });
+
   return (
     <>
       <Style>
@@ -104,8 +109,8 @@ function Input(props) {
           title="Text input (Ctrl + I)"
           spellcheck="false"
           autofocus
-          highlights={state.matches.indices}
-          value={state.inputString}
+          highlights={highlights()}
+          value={state.inputString()}
           setValue={setInput}
         />
       </section>
@@ -117,18 +122,26 @@ function Matches() {
   const [state, { setHoverPosition }] = useAppState();
   return (
     <section class={styles.matches}>
-      <Show when={state.matches.texts.length > 0} fallback={<p>No match</p>}>
-        <Table
-          header={[
-            "$&",
-            ...range(1, state.matches.texts[0].length).map((i) => `$${i}`),
-          ]}
-          onHover={setHoverPosition}
-          onLeave={setHoverPosition}
-          data={state.matches.texts}
-          rowLimit={10}
-        />
-      </Show>
+      <Switch>
+        <Match when={state.processing()}>
+          <p>Processing...</p>
+        </Match>
+        <Match when={state.matches().texts.length === 0}>
+          <p>No match</p>
+        </Match>
+        <Match when={true}>
+          <Table
+            header={[
+              "$&",
+              ...range(1, state.matches().texts[0].length).map((i) => `$${i}`),
+            ]}
+            onHover={setHoverPosition}
+            onLeave={setHoverPosition}
+            data={state.matches().texts}
+            rowLimit={10}
+          />
+        </Match>
+      </Switch>
     </section>
   );
 }
@@ -155,7 +168,7 @@ export default () => {
   const [state, { setAnimatePattern }] = useAppState();
   createShortcut({ key: "s", ctrlKey: true }, (e) => {
     e.preventDefault();
-    const text = state.patternRegExp.toString();
+    const text = state.patternRegExp().toString();
     navigator.clipboard.writeText(text).then(() => {
       setAnimatePattern(true);
     });
