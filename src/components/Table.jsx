@@ -9,12 +9,23 @@ import styles from "./Table.module.css";
  * @param {number=} props.rowLimit - Only show the first "n" row and a link to show the rest.
  * @param {Array<Array<Element>>} props.data
  * @param {Array<Element>} props.header
- * @param {function(Array<number>)} onHover
- * @param {Function} onLeave
+ * @param {function(Element): Element=} props.renderCell
+ * @param {function(Array<number>)=} props.onHover
+ * @param {Function=} props.onLeave
  * @returns {Element}
  */
 export default (props) => {
-  props = mergeProps({ rowLimit: Infinity, onHover() {}, onLeave() {} }, props);
+  props = mergeProps(
+    {
+      rowLimit: Infinity,
+      renderCell(el) {
+        return el;
+      },
+      onHover() {},
+      onLeave() {},
+    },
+    props
+  );
 
   const [showAll, setShowAll] = createSignal(false);
   const length = createMemo(() => {
@@ -25,19 +36,35 @@ export default (props) => {
     return props.rowLimit;
   });
 
-  const handleMouseLeave = () => props.onLeave();
-  const handleMouseOver = ({ target }) => {
-    if (!["TH", "TD"].includes(target.nodeName)) {
-      return;
+  /**
+   * @param {HTMLElement} el
+   * @returns {?Array<number>}
+   */
+  const getCoordinates = (el) => {
+    let elWithColProp = el;
+    while (elWithColProp && !elWithColProp.dataset.col) {
+      elWithColProp = elWithColProp.parentElement;
+    }
+
+    if (!elWithColProp) {
+      return null;
     }
 
     const {
       dataset: { col },
-    } = target;
+    } = elWithColProp;
     const {
       dataset: { row },
-    } = target.parentElement;
-    props.onHover([parseInt(row, 10), parseInt(col, 10)]);
+    } = elWithColProp.parentElement;
+    return [parseInt(row, 10), parseInt(col, 10)];
+  };
+
+  const handleMouseLeave = () => props.onLeave();
+  const handleMouseOver = ({ target }) => {
+    const coordinates = getCoordinates(target);
+    if (coordinates) {
+      props.onHover(coordinates);
+    }
   };
 
   return (
@@ -55,7 +82,9 @@ export default (props) => {
             {(rowIndex) => (
               <tr data-row={rowIndex()}>
                 <Index each={props.data[rowIndex()]}>
-                  {(item, colIndex) => <td data-col={colIndex}>{item()}</td>}
+                  {(item, colIndex) => (
+                    <td data-col={colIndex}>{props.renderCell(item())}</td>
+                  )}
                 </Index>
               </tr>
             )}

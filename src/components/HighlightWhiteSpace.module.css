@@ -1,0 +1,17 @@
+.root {
+  [data-char] {
+    vertical-align: bottom;
+    position: relative;
+    display: inline-block;
+    height: 1lh;
+    cursor: text;
+
+    &:after {
+      content: attr(data-char);
+      color: var(--text-secondary);
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+}

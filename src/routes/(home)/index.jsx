@@ -2,6 +2,7 @@ import { A, Style, useNavigate } from "solid-start";
 import { createMemo, Show, Switch, Match } from "solid-js";
 import { Book } from "~/components/icons";
 import EnhancedTextarea from "~/components/EnhancedTextarea";
+import HighlightWhiteSpace from "~/components/HighlightWhiteSpace";
 import Table from "~/components/Table";
 import range from "~/lib/range";
 import { useAppState } from "~/context/app";
@@ -135,10 +136,13 @@ function Matches() {
               "$&",
               ...range(1, state.matches().texts[0].length).map((i) => `$${i}`),
             ]}
-            onHover={setHoverPosition}
-            onLeave={setHoverPosition}
             data={state.matches().texts}
             rowLimit={10}
+            renderCell={(cell) => (
+              <HighlightWhiteSpace>{cell}</HighlightWhiteSpace>
+            )}
+            onHover={setHoverPosition}
+            onLeave={setHoverPosition}
           />
         </Match>
       </Switch>
