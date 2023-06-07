@@ -8,6 +8,12 @@ import {
   batch,
   on,
 } from "solid-js";
+import {
+  initialPattern,
+  initialInput,
+  largeInput,
+  debounceTimeoutInMs,
+} from "~/settings";
 import getRegExpFromString from "~/lib/getRegExpFromString";
 
 /**
@@ -38,13 +44,10 @@ import getRegExpFromString from "~/lib/getRegExpFromString";
 const AppContext = createContext();
 
 /**
- * @param {Object} props
- * @param {string=} props.pattern
- * @param {string=} props.input
  * @returns {import('solid-js').JSX.Element}
  */
 export function AppProvider(props) {
-  const [patternString, setPatternString] = createSignal(props.pattern ?? "");
+  const [patternString, setPatternString] = createSignal(initialPattern);
   const patternRegExp = createMemo(() => {
     try {
       return getRegExpFromString(patternString());
@@ -54,7 +57,7 @@ export function AppProvider(props) {
   });
   const [animatePattern, setAnimatePattern] = createSignal(false);
 
-  const [inputString, setInputString] = createSignal(props.input ?? "");
+  const [inputString, setInputString] = createSignal(initialInput);
 
   const [hoverPosition, setHoverPosition] = createSignal(null);
 
@@ -107,10 +110,9 @@ export function AppProvider(props) {
       () => {
         clearTimeout(tick);
 
-        const isLargeInput = inputString().length > 1e4;
-        if (isLargeInput) {
+        if (inputString().length > largeInput) {
           setProcessing(true);
-          tick = setTimeout(updateMatches, 200);
+          tick = setTimeout(updateMatches, debounceTimeoutInMs);
         } else {
           updateMatches();
         }
