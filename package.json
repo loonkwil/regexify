@@ -4,7 +4,6 @@
   "scripts": {
     "dev": "solid-start dev",
     "build": "solid-start build",
-    "start": "solid-start start",
     "test:unit": "vitest",
     "test": "npm run test:unit"
   },
