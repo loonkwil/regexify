@@ -1,5 +1,5 @@
 import { A, Style, useNavigate } from "solid-start";
-import { createMemo, Show, Switch, Match } from "solid-js";
+import { createMemo, createSignal, Show, Switch, Match } from "solid-js";
 import { Book } from "~/components/icons";
 import EnhancedTextarea from "~/components/EnhancedTextarea";
 import HighlightWhiteSpace from "~/components/HighlightWhiteSpace";
@@ -121,6 +121,7 @@ function Input(props) {
 
 function Matches() {
   const [state, { setHoverPosition }] = useAppState();
+  const [showAll, setShowAll] = createSignal(false);
   return (
     <section class={styles.matches}>
       <Switch>
@@ -137,7 +138,8 @@ function Matches() {
               ...range(1, state.matches().texts[0].length).map((i) => `$${i}`),
             ]}
             data={state.matches().texts}
-            rowLimit={10}
+            rowLimit={showAll() ? Infinity : 10}
+            onShowAllRequest={() => setShowAll(true)}
             renderCell={(cell) => (
               <HighlightWhiteSpace>{cell}</HighlightWhiteSpace>
             )}

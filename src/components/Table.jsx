@@ -1,4 +1,4 @@
-import { Show, Index, createSignal, createMemo, mergeProps } from "solid-js";
+import { Show, Index, createMemo, mergeProps } from "solid-js";
 import Range from "~/components/Range";
 import styles from "./Table.module.css";
 
@@ -10,6 +10,7 @@ import styles from "./Table.module.css";
  * @param {Array<Array<Element>>} props.data
  * @param {Array<Element>} props.header
  * @param {function(Element): Element=} props.renderCell
+ * @param {Function=} props.onShowAllRequest
  * @param {function(Array<number>)=} props.onHover
  * @param {Function=} props.onLeave
  * @returns {Element}
@@ -21,20 +22,14 @@ export default (props) => {
       renderCell(el) {
         return el;
       },
+      onShowAllRequest() {},
       onHover() {},
       onLeave() {},
     },
     props
   );
 
-  const [showAll, setShowAll] = createSignal(false);
-  const length = createMemo(() => {
-    if (showAll() || props.rowLimit + 1 >= props.data.length) {
-      return props.data.length;
-    }
-
-    return props.rowLimit;
-  });
+  const length = createMemo(() => Math.min(props.rowLimit, props.data.length));
 
   /**
    * @param {HTMLElement} el
@@ -92,7 +87,7 @@ export default (props) => {
         </tbody>
       </table>
       <Show when={props.data.length !== length()}>
-        <button onClick={() => setShowAll(true)}>
+        <button onClick={() => props.onShowAllRequest()}>
           {props.data.length - props.rowLimit} results are hidden
         </button>
       </Show>
