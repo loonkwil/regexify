@@ -29,7 +29,11 @@ export default () => (
       <Meta name="viewport" content="width=device-width, initial-scale=1" />
       <Meta name="color-scheme" content="light dark" />
 
-      <Link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      <Link
+        rel="icon"
+        type="image/svg+xml"
+        href={`${import.meta.env.BASE_URL}favicon.svg`}
+      />
     </Head>
     <Body>
       <Show
