@@ -9,13 +9,13 @@
   },
   "type": "module",
   "devDependencies": {
-    "esbuild": "^0.17.19",
+    "esbuild": "^0.18.11",
     "eslint": "^8.42.0",
     "eslint-plugin-solid": "^0.12.1",
     "postcss": "^8.4.21",
     "solid-start-static": "^0.2.26",
     "vite": "^4.1.4",
-    "vitest": "^0.32.0"
+    "vitest": "^0.33.0"
   },
   "dependencies": {
     "@solidjs/meta": "^0.28.2",
