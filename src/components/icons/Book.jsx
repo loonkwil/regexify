@@ -7,7 +7,7 @@ export default () => (
     xmlns="http://www.w3.org/2000/svg"
   >
     <g
-      style={{"stroke":"var(--text-main)"}}
+      stroke="currentcolor"
       stroke-width="1.5"
       stroke-linecap="round"
       stroke-linejoin="round"
