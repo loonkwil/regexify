@@ -1,5 +1,4 @@
 import { A, useNavigate } from "solid-start";
-import { LeftArrow } from "~/components/icons";
 import styles from "./index.module.css";
 import createShortcut from "~/lib/createShortcut";
 
@@ -13,7 +12,9 @@ export default () => {
   return (
     <div class={styles.root}>
       <A href="/" title="Home (Ctrl + M)">
-        <LeftArrow />
+        <svg width="24" height="24">
+          <use href={`${import.meta.env.BASE_URL}icons.svg#left-arrow`} />
+        </svg>
       </A>
       <article>
         <h2>

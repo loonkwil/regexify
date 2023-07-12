@@ -1,6 +1,5 @@
 import { A, Style, useNavigate } from "solid-start";
 import { createMemo, createSignal, Show, Switch, Match } from "solid-js";
-import { Book } from "~/components/icons";
 import EnhancedTextarea from "~/components/EnhancedTextarea";
 import HighlightWhiteSpace from "~/components/HighlightWhiteSpace";
 import Table from "~/components/Table";
@@ -17,7 +16,9 @@ function Header() {
       </div>
       <div>
         <A href="/cheat-sheet" title="RegExp Cheat Sheet (Ctrl + M)">
-          <Book />
+          <svg width="24" height="24">
+            <use href={`${import.meta.env.BASE_URL}icons.svg#book`} />
+          </svg>
         </A>
       </div>
     </header>
