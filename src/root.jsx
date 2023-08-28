@@ -57,7 +57,7 @@ export default () => (
                 >
                   matchAll
                 </a>{" "}
-                RegExp function (Chrome 112+, Safari 16.5+, Firefox 116+).
+                RegExp function (Chrome 112+, Safari 16.5+, Firefox 117+).
               </>
             }
           />
