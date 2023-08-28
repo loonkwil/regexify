@@ -9,19 +9,19 @@
   },
   "type": "module",
   "devDependencies": {
-    "esbuild": "^0.18.11",
+    "esbuild": "^0.19.2",
     "eslint": "^8.42.0",
-    "eslint-plugin-solid": "^0.12.1",
+    "eslint-plugin-solid": "^0.13.0",
     "postcss": "^8.4.21",
-    "solid-start-static": "^0.2.26",
+    "solid-start-static": "^0.3.4",
     "vite": "^4.1.4",
-    "vitest": "^0.33.0"
+    "vitest": "^0.34.3"
   },
   "dependencies": {
     "@solidjs/meta": "^0.28.2",
     "@solidjs/router": "^0.8.2",
     "solid-js": "^1.7.2",
-    "solid-start": "^0.2.26",
+    "solid-start": "^0.3.4",
     "undici": "^5.15.1"
   },
   "engines": {
