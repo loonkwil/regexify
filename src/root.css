@@ -25,6 +25,16 @@
   --text-sm: 0.75rem; /* 12px */
   --text-xs: 0.5rem; /* 8px */
 
+  @media (prefers-contrast: more) {
+    --black: #000000;
+    --yellow: #ffff00;
+    --red: #ff0000;
+
+    --bg: var(--white);
+    --text-secondary: var(--black);
+    --border-secondary: var(--black);
+  }
+
   @media (prefers-color-scheme: dark) {
     --bg: var(--black);
     --text-main: var(--white);
@@ -36,6 +46,11 @@
     --mark-bg-default: var(--gray-900);
     --mark-bg-active: var(--yellow);
     --input-bg: var(--black);
+
+    @media (prefers-contrast: more) {
+      --text-secondary: var(--white);
+      --border-secondary: var(--white);
+    }
   }
 }
 
