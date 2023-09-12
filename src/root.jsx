@@ -47,12 +47,17 @@ export default () => (
                 Your Browser is not Supported
                 <br />
                 Try to use a browser that supports{" "}
-                <a href="https://drafts.csswg.org/css-nesting/" target="_blank">
+                <a
+                  href="https://drafts.csswg.org/css-nesting/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   nested CSS
                 </a>{" "}
                 and the{" "}
                 <a
                   href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/matchAll"
+                  rel="noreferrer"
                   target="_blank"
                 >
                   matchAll

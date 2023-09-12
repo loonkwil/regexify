@@ -21,6 +21,7 @@ export default () => {
           <a
             href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions#advanced_searching_with_flags"
             target="_blank"
+            rel="noreferrer"
           >
             Flags
           </a>
@@ -75,6 +76,7 @@ export default () => {
           <a
             href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Groups_and_backreferences#types"
             target="_blank"
+            rel="noreferrer"
           >
             Groups and backreferences
           </a>
@@ -117,6 +119,7 @@ export default () => {
           <a
             href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Character_classes#types"
             target="_blank"
+            rel="noreferrer"
           >
             Character classes
           </a>
@@ -282,6 +285,7 @@ export default () => {
             <a
               href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Unicode_character_class_escape"
               target="_blank"
+              rel="noreferrer"
             >
               Unicode character properties.
             </a>
@@ -292,6 +296,7 @@ export default () => {
           <a
             href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Assertions#types"
             target="_blank"
+            rel="noreferrer"
           >
             Assertions
           </a>
@@ -363,6 +368,7 @@ export default () => {
           <a
             href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Quantifiers#types"
             target="_blank"
+            rel="noreferrer"
           >
             Quantifiers
           </a>
@@ -432,6 +438,7 @@ export default () => {
           <a
             href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions"
             target="_blank"
+            rel="noreferrer"
           >
             MDN Web Docs
           </a>
