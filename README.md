@@ -1,6 +1,6 @@
 # Regexify
 
-![Preview of the app](https://github.com/loonkwil/regexify/assets/1401202/736fd245-9c69-4171-b0c3-01b222577b81)
+![Preview of the app](https://github.com/loonkwil/regexify/assets/1401202/56db1bcb-68da-449c-9c32-87e8f044edf8)
 
 https://loonkwil.github.io/regexify/
 
