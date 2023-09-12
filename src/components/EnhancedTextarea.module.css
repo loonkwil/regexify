@@ -25,6 +25,7 @@
 
   & label {
     font-size: var(--text-sm);
+    font-weight: bold;
     color: var(--text-secondary);
   }
 }

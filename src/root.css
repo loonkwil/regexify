@@ -1,20 +1,21 @@
 /* Variable declarations */
 :root {
-  --black: #28292f;
-  --dark-gray: #c6c7d0;
-  --light-gray: #f2f2f2;
+  --black: #26262c;
+  --gray-900: #747486;
+  --gray-600: #b2b2bd;
+  --gray-300: #f2f2f2;
   --yellow: #f6d578;
   --red: #ff565e;
   --white: #ffffff;
 
-  --bg: var(--light-gray);
+  --bg: var(--gray-300);
   --text-main: var(--black);
-  --text-secondary: var(--dark-gray);
+  --text-secondary: var(--gray-900);
   --border-default: var(--black);
   --border-active: var(--yellow);
   --border-error: var(--red);
-  --border-secondary: var(--dark-gray);
-  --mark-bg-default: var(--dark-gray);
+  --border-secondary: var(--gray-600);
+  --mark-bg-default: var(--gray-600);
   --mark-bg-active: var(--yellow);
   --input-bg: var(--white);
 
@@ -27,8 +28,13 @@
   @media (prefers-color-scheme: dark) {
     --bg: var(--black);
     --text-main: var(--white);
+    --text-secondary: var(--gray-600);
     --border-default: var(--white);
-    --border-secondary: var(--light-gray);
+    --border-active: var(--yellow);
+    --border-error: var(--red);
+    --border-secondary: var(--gray-900);
+    --mark-bg-default: var(--gray-900);
+    --mark-bg-active: var(--yellow);
     --input-bg: var(--black);
   }
 }
@@ -46,8 +52,12 @@ html {
 
 /* Global formatting */
 html {
-  font: var(--text-md) / 1.25rem "SF Mono", "Consolas", "DejaVu Sans Mono",
-    "Roboto Mono", monospace;
+  font:
+    var(--text-md) / 1.25rem "SF Mono",
+    "Consolas",
+    "DejaVu Sans Mono",
+    "Roboto Mono",
+    monospace;
   color: var(--text-main);
   background: var(--bg);
 }
