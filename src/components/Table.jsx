@@ -1,4 +1,4 @@
-import { Show, Index, createMemo, mergeProps } from "solid-js";
+import { Show, Index, createMemo, mergeProps, createUniqueId } from "solid-js";
 import Range from "~/components/Range";
 import styles from "./Table.module.css";
 
@@ -26,9 +26,10 @@ export default (props) => {
       onHover() {},
       onLeave() {},
     },
-    props
+    props,
   );
 
+  const id = createUniqueId();
   const length = createMemo(() => Math.min(props.rowLimit, props.data.length));
 
   /**
@@ -64,7 +65,12 @@ export default (props) => {
 
   return (
     <div class={styles.root}>
-      <table onMouseLeave={handleMouseLeave} onMouseOver={handleMouseOver}>
+      <table
+        onMouseLeave={handleMouseLeave}
+        onMouseOver={handleMouseOver}
+        aria-rowcount={props.data.length}
+        id={id}
+      >
         <thead>
           <tr data-row={-1}>
             <Index each={props.header}>
@@ -87,7 +93,11 @@ export default (props) => {
         </tbody>
       </table>
       <Show when={props.data.length !== length()}>
-        <button onClick={() => props.onShowAllRequest()}>
+        <button
+          onClick={() => props.onShowAllRequest()}
+          aria-label={`Click here to show all the ${props.data.length} results`}
+          aria-controls={id}
+        >
           {props.data.length - props.rowLimit} results are hidden
         </button>
       </Show>

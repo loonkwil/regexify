@@ -2,19 +2,22 @@ export const initialPattern =
   "/(?<modifier>ctrl|alt|cmd)\\s?[+]\\s?(?<key>\\w)/gi";
 
 export const initialInput = `🐭 Size and Speed
-It takes less than 30 kB to render the initial page.
-SolidJS and Server Side Rendering are used to be fast.
+It uses SolidJS and Server Side Rendering to be fast.
+The initial page is less than 30kB.
 
-🔒 Privacy
-Everything is calculated in your browser.
-Your data will not be uploaded or stored anywhere.
-There are no ads or cookies.
+♿️ Accessibility
+Keyboard navigation, screen readers, light and dark modes, reduced motion, and high contrast are supported.
 
 ⌨️ Keyboard Shortcuts
 Select pattern: Ctrl + P.
 Select input field: Ctrl + I.
 Copy RegExp: Ctrl + S.
 Open cheat sheet: Ctrl + M (hit Ctrl + M again to close it).
+
+🔒 Privacy
+Everything is calculated in your browser.
+Your data will not be uploaded or stored anywhere.
+There are no ads or cookies.
 
 ✨ Extended RegExp
 You can use a multiline string as a pattern.`;

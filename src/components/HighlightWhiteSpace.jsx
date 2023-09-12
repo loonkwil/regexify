@@ -19,25 +19,27 @@ export default (props) => {
     Array.from(props.children.matchAll(/\s/g), ({ index }) => [
       index,
       index + 1,
-    ])
+    ]),
   );
 
   return (
     <Show when={props.children}>
-      <div class={styles.root}>
-        {markText(props.children, positions(), (char) => {
-          const replacement = replacements[char];
-          if (!replacement) {
-            return char;
-          }
+      <div class={styles.root} aria-label={props.children}>
+        <span aria-hidden="true">
+          {markText(props.children, positions(), (char) => {
+            const replacement = replacements[char];
+            if (!replacement) {
+              return char;
+            }
 
-          return (
-            <>
-              <span data-char={replacement}>{char !== "\n" && char}</span>
-              {char === "\n" && <br />}
-            </>
-          );
-        })}
+            return (
+              <>
+                <span data-char={replacement}>{char !== "\n" && char}</span>
+                {char === "\n" && <br />}
+              </>
+            );
+          })}
+        </span>
       </div>
     </Show>
   );

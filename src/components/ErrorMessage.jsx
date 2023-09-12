@@ -16,7 +16,7 @@ export default (props) => {
 
   return (
     <div class={styles.root}>
-      <h2>(☉_☉)</h2>
+      <div aria-hidden="true">(☉_☉)</div>
       <p>{props.message}</p>
     </div>
   );

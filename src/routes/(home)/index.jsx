@@ -1,4 +1,4 @@
-import { A, Style, useNavigate } from "solid-start";
+import { A, Title, Style, useNavigate } from "solid-start";
 import { createMemo, createSignal, Show, Switch, Match } from "solid-js";
 import EnhancedTextarea from "~/components/EnhancedTextarea";
 import HighlightWhiteSpace from "~/components/HighlightWhiteSpace";
@@ -8,20 +8,28 @@ import { useAppState } from "~/context/app";
 import styles from "./index.module.css";
 import createShortcut from "~/lib/createShortcut";
 
-function Header() {
+function Header(props) {
   return (
-    <header class={styles.header}>
-      <div>
-        <h1>JavaScript RegExp Tester</h1>
-      </div>
-      <div>
-        <A href="/cheat-sheet" title="RegExp Cheat Sheet (Ctrl + M)">
-          <svg width="24" height="24">
-            <use href={`${import.meta.env.BASE_URL}icons.svg#book`} />
-          </svg>
-        </A>
-      </div>
+    <header>
+      <h1 id={props.id}>JavaScript RegExp Tester</h1>
     </header>
+  );
+}
+
+function Navigation() {
+  return (
+    <nav>
+      <A
+        href="/cheat-sheet"
+        title="RegExp Cheat Sheet (Ctrl + M)"
+        aria-label="Click here to open the RegExp Cheat Sheet"
+        aria-keyshortcuts="Control+M"
+      >
+        <svg width="24" height="24" role="presentation">
+          <use href={`${import.meta.env.BASE_URL}icons.svg#book`} />
+        </svg>
+      </A>
+    </nav>
   );
 }
 
@@ -40,7 +48,10 @@ function Pattern(props) {
         ref={props.ref}
         containerClasses={state.animatePattern() ? styles.animate : ""}
         label="Pattern"
+        id="pattern"
         title="RegExp pattern (Ctrl + P)"
+        ariaLabel="RegExp pattern"
+        ariaKeyshortcuts="Control+P"
         spellcheck="false"
         invalid={
           state.patternRegExp() instanceof Error
@@ -108,7 +119,10 @@ function Input(props) {
         <EnhancedTextarea
           ref={props.ref}
           label="Input"
+          id="input"
           title="Text input (Ctrl + I)"
+          ariaLabel="Text input"
+          ariaKeyshortcuts="Control+I"
           spellcheck="false"
           autofocus
           highlights={highlights()}
@@ -124,7 +138,7 @@ function Matches() {
   const [state, { setHoverPosition }] = useAppState();
   const [showAll, setShowAll] = createSignal(false);
   return (
-    <section class={styles.matches}>
+    <output class={styles.matches} for="input pattern" aria-label="Matches">
       <Switch>
         <Match when={state.processing()}>
           <p>Processing...</p>
@@ -149,7 +163,7 @@ function Matches() {
           />
         </Match>
       </Switch>
-    </section>
+    </output>
   );
 }
 
@@ -183,10 +197,15 @@ export default () => {
 
   return (
     <div class={styles.root}>
-      <Header />
-      <Pattern ref={patternEl} />
-      <Input ref={inputEl} />
-      <Matches />
+      <Title>Home Page - Regexify</Title>
+
+      <Header id="title" />
+      <Navigation />
+      <main class={styles.main} aria-labelledby="title">
+        <Pattern ref={patternEl} />
+        <Input ref={inputEl} />
+        <Matches />
+      </main>
     </div>
   );
 };

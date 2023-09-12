@@ -8,17 +8,21 @@ import styles from "./EnhancedTextarea.module.css";
  * @param {Array<Array<Array<number>>>=} props.highlights
  * @param {string=} props.invalid
  * @param {string} props.label
+ * @param {string=} props.id
  * @param {string=} props.spellcheck
  * @param {string=} props.autofocus
  * @param {Function=} props.ref
  * @param {string=} props.title
  * @param {string=} props.containerClasses
+ * @param {string=} props.ariaLabel
+ * @param {string=} props.ariaKeyShortcuts
  * @returns {Element}
  */
 export default (props) => {
-  props = mergeProps({ highlights: [], ref() {}, containerClasses: "" }, props);
-
-  const id = createUniqueId();
+  props = mergeProps(
+    { highlights: [], ref() {}, containerClasses: "", id: createUniqueId() },
+    props,
+  );
 
   let textareaEl;
   createEffect(() => {
@@ -52,7 +56,7 @@ export default (props) => {
           (subText, colIndex) => (
             <span data-col={colIndex}>{subText}</span>
           ),
-          boundary[0]
+          boundary[0],
         )}
       </mark>
     ));
@@ -61,19 +65,19 @@ export default (props) => {
   return (
     <div class={styles.root}>
       <Show when={props.label}>
-        <label for={id} title={props.title}>
+        <label for={props.id} title={props.title}>
           {props.label}
         </label>
       </Show>
       <div class={`${styles.container} ${props.containerClasses}`}>
-        <div>{highlightedText()}</div>
+        <div aria-hidden="true">{highlightedText()}</div>
         {
           // By default, Firefox will persist the value of the textarea across page loads.
           // With the feature, it is hard to keep the props.value the highlighted text and the textarea in sync.
           // This feature can be disabled with the "autocomplete" attribute.
         }
         <textarea
-          id={id}
+          id={props.id}
           rows="1"
           autocomplete="off"
           spellcheck={props.spellcheck}
@@ -85,6 +89,8 @@ export default (props) => {
             props.setValue(value);
           }}
           autofocus={props.autofocus}
+          aria-label={props.ariaLabel}
+          aria-keyshortcuts={props.ariaKeyshortcuts}
         >
           {props.value}
         </textarea>
