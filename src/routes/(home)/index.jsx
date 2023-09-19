@@ -138,7 +138,12 @@ function Matches() {
   const [state, { setHoverPosition }] = useAppState();
   const [showAll, setShowAll] = createSignal(false);
   return (
-    <output class={styles.matches} for="input pattern" aria-label="Matches">
+    <output
+      class={styles.matches}
+      for="input pattern"
+      aria-label="Matches"
+      aria-live="off"
+    >
       <Switch>
         <Match when={state.processing()}>
           <p>Processing...</p>
