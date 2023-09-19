@@ -11,9 +11,6 @@
   min-height: 4rem;
   user-select: none;
   transition: border-color 150ms;
-  @media (prefers-reduced-motion: reduce) {
-    transition-duration: 0ms;
-  }
 
   &:focus-within {
     border-color: var(--border-active);

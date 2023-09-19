@@ -39,9 +39,6 @@
   & mark {
     background-color: var(--mark-bg-default);
     transition: background-color 150ms;
-    @media (prefers-reduced-motion: reduce) {
-      transition-duration: 0ms;
-    }
 
     & span {
       background-color: transparent;

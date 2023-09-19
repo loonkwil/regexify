@@ -6,7 +6,7 @@ It uses SolidJS and Server Side Rendering to be fast.
 The initial page is less than 30kB.
 
 ♿️ Accessibility
-Keyboard navigation, screen readers, light and dark modes, reduced motion, and high contrast are supported.
+Keyboard navigation, screen readers, light and dark modes, and high contrast are supported.
 
 ⌨️ Keyboard Shortcuts
 Select pattern: Ctrl + P.
