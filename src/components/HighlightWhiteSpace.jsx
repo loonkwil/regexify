@@ -16,10 +16,12 @@ const replacements = {
  */
 export default (props) => {
   const positions = createMemo(() =>
-    Array.from(props.children.matchAll(/\s/g), ({ index }) => [
-      index,
-      index + 1,
-    ]),
+    props.children
+      ? Array.from(props.children.matchAll(/\s/g), ({ index }) => [
+          index,
+          index + 1,
+        ])
+      : [],
   );
 
   return (
