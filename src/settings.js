@@ -3,7 +3,7 @@ export const initialPattern =
 
 export const initialInput = `🐭 Size and Speed
 It uses SolidJS and Server Side Rendering to be fast.
-The initial page is less than 30kB.
+The initial page is less than 50kB.
 
 ♿️ Accessibility
 Keyboard navigation, screen readers, light and dark modes, and high contrast are supported.
