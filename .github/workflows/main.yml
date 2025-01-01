@@ -31,10 +31,12 @@ jobs:
         run: npm test
       - name: Build
         run:  npm run build
+        env:
+          BASE_PATH: /regexify/
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: "dist/public"
+          path: ".output/public"
 
   deploy:
     needs: build

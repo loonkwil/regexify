@@ -1,4 +1,5 @@
-import { A, Title, useNavigate } from "solid-start";
+import { Title } from "@solidjs/meta";
+import { A, useNavigate } from "@solidjs/router";
 import styles from "./index.module.css";
 import createShortcut from "~/lib/createShortcut";
 
@@ -12,7 +13,7 @@ function Navigation() {
         aria-keyshortcuts="Control+M"
       >
         <svg width="24" height="24" role="presentation">
-          <use href={`${import.meta.env.BASE_URL}icons.svg#left-arrow`} />
+          <use href={`${import.meta.env.SERVER_BASE_URL}icons.svg#left-arrow`} />
         </svg>
       </A>
     </nav>

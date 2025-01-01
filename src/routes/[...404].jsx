@@ -1,5 +1,5 @@
-import { HttpStatusCode } from "solid-start/server";
-import { A } from "solid-start";
+import { HttpStatusCode } from "@solidjs/start";
+import { A } from "@solidjs/router";
 import ErrorMessage from "~/components/ErrorMessage";
 
 export default () => (

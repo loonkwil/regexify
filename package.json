@@ -2,30 +2,23 @@
   "name": "Regexify",
   "description": "Live JavaScript RegExp tester",
   "scripts": {
-    "dev": "solid-start dev",
-    "build": "solid-start build",
+    "dev": "vinxi dev",
+    "build": "vinxi build",
     "test:unit": "vitest",
     "test": "npm run test:unit"
   },
   "type": "module",
   "devDependencies": {
-    "esbuild": "^0.19.2",
+    "@solidjs/meta": "^0.29.4",
+    "@solidjs/router": "^0.15.0",
+    "@solidjs/start": "^1.0.10",
     "eslint": "^8.42.0",
     "eslint-plugin-solid": "^0.13.0",
     "postcss": "^8.4.21",
-    "solid-start-static": "^0.3.4",
-    "vite": "^4.1.4",
-    "vitest": "^0.34.3"
-  },
-  "dependencies": {
-    "@solidjs/meta": "^0.28.2",
-    "@solidjs/router": "^0.8.2",
-    "solid-js": "^1.7.2",
-    "solid-start": "^0.3.4",
-    "undici": "^5.15.1"
-  },
-  "engines": {
-    "node": ">=16.8"
+    "solid-js": "^1.9.3",
+    "vinxi": "^0.4.3",
+    "vite": "^5.4.10",
+    "vitest": "^2.1.4"
   },
   "version": "1.2.3"
 }

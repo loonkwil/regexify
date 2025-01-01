@@ -1,4 +1,5 @@
-import { A, Title, Style, useNavigate } from "solid-start";
+import { Title, Style } from "@solidjs/meta";
+import { A, useNavigate } from "@solidjs/router";
 import { createMemo, createSignal, Show, Switch, Match } from "solid-js";
 import EnhancedTextarea from "~/components/EnhancedTextarea";
 import HighlightWhiteSpace from "~/components/HighlightWhiteSpace";
@@ -26,7 +27,7 @@ function Navigation() {
         aria-keyshortcuts="Control+M"
       >
         <svg width="24" height="24" role="presentation">
-          <use href={`${import.meta.env.BASE_URL}icons.svg#book`} />
+          <use href={`${import.meta.env.SERVER_BASE_URL}icons.svg#book`} />
         </svg>
       </A>
     </nav>
