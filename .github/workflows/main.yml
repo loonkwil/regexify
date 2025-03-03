@@ -34,7 +34,7 @@ jobs:
         env:
           BASE_PATH: /regexify/
       - name: Upload Artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ".output/public"
 
