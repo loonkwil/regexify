@@ -10,7 +10,7 @@
  */
 export default (str) => {
   const oneline = str.replaceAll("\n", "").trim();
-  const match = oneline.match(/\/(?<pattern>.*?)\/(?<flags>[a-z]+)?/);
+  const match = oneline.match(/\/(?<pattern>.*?)\/(?<flags>[a-z]+)?$/);
   if (!match) {
     throw new SyntaxError("Invalid RegExp");
   }
